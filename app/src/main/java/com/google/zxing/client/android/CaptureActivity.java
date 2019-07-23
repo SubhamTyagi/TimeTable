@@ -225,7 +225,7 @@ public final class CaptureActivity extends Activity implements SurfaceHolder.Cal
     public void handleDecode(String resultString) {
         inactivityTimer.onActivity();
         if (TextUtils.isEmpty(resultString)) {
-            ToastUtil.show("二维码错误");
+            ToastUtil.show("QR code error");
             finish();
             return;
         }
@@ -321,7 +321,7 @@ public final class CaptureActivity extends Activity implements SurfaceHolder.Cal
 
     private void analysisImage(final Uri uri) {
         if (uri == null) {
-            ToastUtil.show("加载图片失败");
+            ToastUtil.show("Failed to load image");
             return;
         }
         //解析图片

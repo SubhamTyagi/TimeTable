@@ -1,6 +1,6 @@
 package com.sunrain.timetablev4.utils;
 
-import com.meituan.android.walle.WalleChannelReader;
+
 import com.sunrain.timetablev4.BuildConfig;
 import com.sunrain.timetablev4.application.MyApplication;
 
@@ -13,7 +13,7 @@ public class ChannelHelper {
         if (BuildConfig.DEBUG) {
             sChannel = "test";
         } else {
-            sChannel = WalleChannelReader.getChannel(MyApplication.sContext, "unknown");
+            // sChannel = WalleChannelReader.getChannel(MyApplication.sContext, "unknown");
         }
     }
 

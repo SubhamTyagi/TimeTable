@@ -135,18 +135,18 @@ public class CourseManagementFragment extends BaseFragment implements ViewTreeOb
         String classroom = mEtClassroom.getText().toString();
 
         if (TextUtils.isEmpty(course)) {
-            ToastUtil.show("课程名称不能为空");
+            ToastUtil.show("Course name cannot be empty");
             return;
         }
 
         if (TextUtils.isEmpty(classroom)) {
-            ToastUtil.show("上课地点不能为空");
+            ToastUtil.show("Class location cannot be empty");
             return;
         }
 
         CourseClassroomBean bean = new CourseClassroomBean(course, classroom);
         if (CourseClassroomDao.exists(bean)) {
-            ToastUtil.show("已有相同条目");
+            ToastUtil.show("Already have the same entry");
             return;
         }
 
@@ -157,14 +157,14 @@ public class CourseManagementFragment extends BaseFragment implements ViewTreeOb
         long startDate = SharedPreUtils.getLong(SharedPreConstants.SEMESTER_START_DATE, 0);
         long endDate = SharedPreUtils.getLong(SharedPreConstants.SEMESTER_END_DATE, 0);
         if (startDate == 0 || endDate == 0) {
-            new MessageDialog(mActivity).setMessage("请先设置学期日期")
+            new MessageDialog(mActivity).setMessage("Please set the semester date first.")
                     .setNegativeButton(new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
                             dialog.dismiss();
                         }
                     })
-                    .setPositiveButton("去设置", new DialogInterface.OnClickListener() {
+                    .setPositiveButton("Go to set", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
                             dialog.dismiss();
@@ -172,7 +172,7 @@ public class CourseManagementFragment extends BaseFragment implements ViewTreeOb
                             if (settingsFragment != null) {
                                 settingsFragment.showSemesterFragment();
                             } else {
-                                ToastUtil.show("跳转失败 请手动设置");
+                                ToastUtil.show("Jump failed, please set it manually");
                             }
                         }
                     })
@@ -261,12 +261,12 @@ public class CourseManagementFragment extends BaseFragment implements ViewTreeOb
                 final String classroom = editDialog.getClassroom();
 
                 if (TextUtils.isEmpty(course)) {
-                    ToastUtil.show("课程名称不能为空");
+                    ToastUtil.show("Course name cannot be empty");
                     return;
                 }
 
                 if (TextUtils.isEmpty(classroom)) {
-                    ToastUtil.show("上课地点不能为空");
+                    ToastUtil.show("Class location cannot be empty");
                     return;
                 }
 
@@ -278,7 +278,7 @@ public class CourseManagementFragment extends BaseFragment implements ViewTreeOb
                 CourseClassroomBean newBean = new CourseClassroomBean(course, classroom);
 
                 if (CourseClassroomDao.exists(newBean)) {
-                    ToastUtil.show("已有相同条目");
+                    ToastUtil.show("Already have the same entry");
                 } else {
                     dialog.dismiss();
                     updateCourseClassroom(bean, newBean);
@@ -299,14 +299,14 @@ public class CourseManagementFragment extends BaseFragment implements ViewTreeOb
     }
 
     private void showDeleteCourseClassroomDialog(final CourseClassroomBean bean) {
-        new MessageDialog(mActivity).setMessage("删除 " + bean.course + " " + bean.classroom + " 下所有课程？")
+        new MessageDialog(mActivity).setMessage("delete " + bean.course + " " + bean.classroom + " 下所有课程？")
                 .setNegativeButton(new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         dialog.dismiss();
                     }
                 })
-                .setPositiveButton("删除", new DialogInterface.OnClickListener() {
+                .setPositiveButton("delete", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         dialog.dismiss();

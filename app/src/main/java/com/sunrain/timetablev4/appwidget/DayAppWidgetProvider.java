@@ -43,7 +43,7 @@ public class DayAppWidgetProvider extends AppWidgetProvider {
             registerNewDayBroadcast();
         }
 
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("M月d日 E", Locale.getDefault());
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("MDE", Locale.getDefault());
 
         for (int appWidgetId : appWidgetIds) {
             Intent intent = new Intent(context, DayAppWidgetService.class);

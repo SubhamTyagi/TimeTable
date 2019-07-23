@@ -162,13 +162,13 @@ public class AppWidgetConfigureActivity extends Activity implements View.OnClick
     public void onCheckedChanged(RadioGroup group, int checkedId) {
         switch (checkedId) {
             case R.id.rb_time_style_1:
-                mTvTimeStyle.setText(getString(R.string.app_widget_configure_time_style, "上午 第一节"));
+                mTvTimeStyle.setText(getString(R.string.app_widget_configure_time_style, "Morning section"));
                 break;
             case R.id.rb_time_style_2:
-                mTvTimeStyle.setText(getString(R.string.app_widget_configure_time_style, "上 一"));
+                mTvTimeStyle.setText(getString(R.string.app_widget_configure_time_style, "Previous"));
                 break;
             case R.id.rb_time_style_3:
-                mTvTimeStyle.setText(getString(R.string.app_widget_configure_time_style, "上 1"));
+                mTvTimeStyle.setText(getString(R.string.app_widget_configure_time_style, "Upper 1"));
                 break;
         }
     }

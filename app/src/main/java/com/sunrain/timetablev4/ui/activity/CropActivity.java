@@ -51,7 +51,7 @@ public class CropActivity extends BaseActivity implements View.OnClickListener {
 
             @Override
             public void onError() {
-                ToastUtil.show("加载图片失败");
+                ToastUtil.show("Failed to load image");
                 finish();
             }
         });
@@ -88,7 +88,7 @@ public class CropActivity extends BaseActivity implements View.OnClickListener {
 
                     @Override
                     public void onError() {
-                        ToastUtil.show("图片裁剪失败");
+                        ToastUtil.show("Image cropping failed");
                         v.setEnabled(true);
                         mProgressBar.setVisibility(View.GONE);
                     }

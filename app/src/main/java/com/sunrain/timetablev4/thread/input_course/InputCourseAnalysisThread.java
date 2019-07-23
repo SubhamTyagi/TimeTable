@@ -32,13 +32,13 @@ public class InputCourseAnalysisThread extends Thread {
     public void run() {
         String json = ZipUtil.unzipString(mResult);
         if (TextUtils.isEmpty(json)) {
-            ToastUtil.postShow("解析二维码错误");
+            ToastUtil.postShow("Parsing QR code error");
             return;
         }
 
         List<ClassBean> list;
         if (json.startsWith("[")) {
-            // 一代二维码
+
             list = getGenerationOneList(json);
         } else {
             try {
@@ -50,13 +50,13 @@ public class InputCourseAnalysisThread extends Thread {
         }
 
         if (list == null) {
-            ToastUtil.postShow("解析二维码错误");
+            ToastUtil.postShow("Parsing QR code error");
             return;
         }
 
         final MoreFragment moreFragment = mAboutFragmentWeakReference.get();
         if (moreFragment == null) {
-            ToastUtil.postShow("异常请重试");
+            ToastUtil.postShow("Exception please try again");
             return;
         }
 

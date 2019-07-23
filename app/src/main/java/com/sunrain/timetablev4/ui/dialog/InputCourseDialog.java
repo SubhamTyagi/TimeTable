@@ -21,7 +21,8 @@ public class InputCourseDialog extends BaseDialog<InputCourseDialog> {
         super(context);
 
         StringBuilder sb = new StringBuilder();
-        sb.append("是否将当前课程清空，并导入新课程？\n\n新课程信息：");
+        sb.append("Will the current course be emptied and imported into a new course?\n" +
+                "New course information:");
 
         for (ClassBean classBean : list) {
             sb.append("\n\n");

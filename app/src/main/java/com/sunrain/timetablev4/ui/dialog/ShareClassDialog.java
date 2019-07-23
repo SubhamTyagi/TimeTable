@@ -75,7 +75,7 @@ public class ShareClassDialog extends Dialog implements View.OnClickListener {
                 break;
             case R.id.imgBtn_save:
                 BitmapDrawable drawable = (BitmapDrawable) mIvQrCode.getDrawable();
-                ImageUtil.saveBitmapToPicturesDirectory("课表.jpg", drawable.getBitmap());
+                ImageUtil.saveBitmapToPicturesDirectory("curriculum.jpg", drawable.getBitmap());
                 break;
         }
     }
@@ -155,7 +155,7 @@ public class ShareClassDialog extends Dialog implements View.OnClickListener {
         protected void onPostExecute(Bitmap bitmap) {
             ShareClassDialog shareClassDialog = mShareClassDialogWeakReference.get();
             if (shareClassDialog == null) {
-                ToastUtil.show("生成二维码错误");
+                ToastUtil.show("Generate QR code error");
                 return;
             }
 
@@ -167,7 +167,7 @@ public class ShareClassDialog extends Dialog implements View.OnClickListener {
                 shareClassDialog.mImgBtnClose.setOnClickListener(shareClassDialog);
                 shareClassDialog.mImgBtnSave.setOnClickListener(shareClassDialog);
             } else {
-                shareClassDialog.mTvProgress.setText("生成二维码错误");
+                shareClassDialog.mTvProgress.setText("Generate QR code error");
                 shareClassDialog.mImgBtnClose.setVisibility(View.VISIBLE);
                 shareClassDialog.mImgBtnClose.setOnClickListener(shareClassDialog);
             }

@@ -48,7 +48,7 @@ public class WallpaperManager {
         }).fail(new RunnableExecutorService.FailCallback() {
             @Override
             public void fail(Throwable throwable) {
-                ToastUtil.show("壁纸加载失败");
+                ToastUtil.show("Wallpaper failed to load");
             }
         }).execute();
     }

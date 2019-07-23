@@ -96,7 +96,7 @@ public class ClassTimeAdapter extends BaseListAdapter<ClassBean, ClassTimeAdapte
             public void onClick(DialogInterface dialog, int which) {
                 dialog.dismiss();
             }
-        }).setPositiveButton("删除", new DialogInterface.OnClickListener() {
+        }).setPositiveButton("delete", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 dialog.dismiss();
@@ -115,7 +115,7 @@ public class ClassTimeAdapter extends BaseListAdapter<ClassBean, ClassTimeAdapte
                 dialog.dismiss();
 
                 ClassBean classBean = mClassTimeDialog.getClassBean();
-                if (classBean._id == -1) {// 新增
+                if (classBean._id == -1) {
                     classBean._id = TableDao.insert(classBean);
                     mList.add(classBean);
                 } else {

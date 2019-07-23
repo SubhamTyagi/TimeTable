@@ -24,7 +24,7 @@ public class ImageUtil {
         File file = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES), File.separator + "我是课程表");
         if (!file.exists()) {
             if (!file.mkdirs()) {
-                ToastUtil.show("保存失败");
+                ToastUtil.show("Save failed");
                 return;
             }
         }
@@ -35,12 +35,12 @@ public class ImageUtil {
             bitmap.compress(Bitmap.CompressFormat.JPEG, 100, fileOutputStream);
             fileOutputStream.flush();
         } catch (IOException | IllegalStateException e) {
-            ToastUtil.show("保存失败");
+            ToastUtil.show("Save failed");
             return;
         } finally {
             FileUtil.close(fileOutputStream);
         }
-        ToastUtil.show("已保存到" + filePic.getPath());
+        ToastUtil.show("Saved to" + filePic.getPath());
         //通知相册刷新图片
         MediaScannerConnection.scanFile(MyApplication.sContext, new String[]{filePic.toString()}, null, null);
     }

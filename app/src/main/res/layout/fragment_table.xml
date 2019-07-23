@@ -51,7 +51,7 @@
     <TextView
         android:id="@+id/tv_double_week"
         style="@style/SettingsItem.LargeText"
-        android:text="单双周"
+        android:text="Single and double weeks"
         app:layout_constraintBaseline_toBaselineOf="@+id/tv_morning"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"/>

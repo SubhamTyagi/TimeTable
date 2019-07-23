@@ -31,7 +31,7 @@ public class DataCheckThread extends Thread {
 
         if (mLastVersionCode == 0) {
             if (mainActivity == null) {
-                ToastUtil.postShow("请在更多中查看使用教程", true);
+                ToastUtil.postShow("Please see the tutorial in more", true);
                 return;
             }
 
@@ -44,11 +44,11 @@ public class DataCheckThread extends Thread {
             return;
         }
 
-        // 23 开始加入双周，25 更改了双周规则
+        // 23 Start joining biweekly, 25 changed biweekly rules
         if ((mLastVersionCode == 23 || mLastVersionCode == 24) && SharedPreUtils.getInt(SharedPreConstants.DOUBLE_WEEK,
                 SharedPreConstants.DEFAULT_DOUBLE_WEEK) == 1) {
             if (mainActivity == null) {
-                ToastUtil.postShow("请检查单周课程配置", true);
+                ToastUtil.postShow("Please check the one-week course configuration", true);
                 return;
             }
 
@@ -64,26 +64,26 @@ public class DataCheckThread extends Thread {
         // 学期检查
         long startDateTime = SharedPreUtils.getLong(SharedPreConstants.SEMESTER_START_DATE, 0);
         if (startDateTime == 0) {
-            ToastUtil.postShow("请设置学期起始日期", true);
+            ToastUtil.postShow("Please set the semester start date", true);
             return;
         }
 
         long endDate = SharedPreUtils.getLong(SharedPreConstants.SEMESTER_END_DATE, 0);
         if (endDate == 0) {
-            ToastUtil.postShow("请设置学期结束日期", true);
+            ToastUtil.postShow("Please set the semester end date", true);
             return;
         }
 
         final int week = SharedPreUtils.getInt(SharedPreConstants.SEMESTER_WEEK, SharedPreConstants.DEFAULT_SEMESTER_WEEK);
         int currentWeek = CalendarUtil.getCurrentWeek();
         if (currentWeek < 0 || currentWeek > week - 1) {
-            ToastUtil.postShow("当前周数已超出学期总周数", true);
+            ToastUtil.postShow("The current number of weeks has exceeded the total number of weeks in the semester", true);
             return;
         }
 
         if (TableDao.existsOutOfWeek(week - 1)) {
             if (mainActivity == null) {
-                ToastUtil.postShow("存在上课时间超出学期总周数" + week + "周的课程", true);
+                ToastUtil.postShow("There are more than the total number of weeks in the semester" + week + "周的课程", true);
                 return;
             }
 
@@ -96,26 +96,26 @@ public class DataCheckThread extends Thread {
             return;
         }
 
-        // 课程检查
+        // Course inspection
         if (CourseClassroomDao.isDataBaseEmpty()) {
-            ToastUtil.postShow("请添加课程", true);
+            ToastUtil.postShow("Please add a course", true);
             return;
         }
 
         if (TableDao.isDataBaseEmpty()) {
-            ToastUtil.postShow("请为课程添加上课时间", true);
+            ToastUtil.postShow("Please add class time to the course", true);
             return;
         }
 
         if (SharedPreUtils.getInt(SharedPreConstants.DOUBLE_WEEK, SharedPreConstants.DEFAULT_DOUBLE_WEEK) == 0 && TableDao
                 .existsDoubleWeek()) {
-            ToastUtil.postShow("存在双周课程，但未启用单双周功能", true);
+            ToastUtil.postShow("There are biweekly courses, but single and double week functions are not enabled", true);
         }
     }
 
     private void showDoubleWeekDialog(final MainActivity mainActivity) {
-        new MessageDialog(mainActivity).setMessage("单双周功能进行了优化，单周的规则发生了变化，请及时调整课表中的单周课程。")
-                .setPositiveButton("我知道了", new DialogInterface.OnClickListener() {
+        new MessageDialog(mainActivity).setMessage("The single and double week functions have been optimized, and the rules for one week have changed. Please adjust the one-week course in the class schedule in time.")
+                .setPositiveButton("I know", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         dialog.dismiss();
@@ -126,14 +126,15 @@ public class DataCheckThread extends Thread {
     }
 
     private void showTutorialDialog(final MainActivity mainActivity) {
-        new MessageDialog(mainActivity).setMessage("建议您先查看使用教程，\n或稍后在更多中重新查看。")
-                .setNegativeButton("关闭", new DialogInterface.OnClickListener() {
+        new MessageDialog(mainActivity).setMessage("I suggest you check out the tutorial first.\n" +
+                "Or check back later in more.")
+                .setNegativeButton("shut down", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         dialog.dismiss();
                     }
                 })
-                .setPositiveButton("查看使用教程", new DialogInterface.OnClickListener() {
+                .setPositiveButton("View tutorial", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         dialog.dismiss();
@@ -144,8 +145,8 @@ public class DataCheckThread extends Thread {
     }
 
     private void showOutOfWeekDialog(MainActivity mainActivity, int week) {
-        new MessageDialog(mainActivity).setMessage("当前学期总周数为" + week + "周，存在上课时间超出" + week + "周的课程，请注意处理。")
-                .setPositiveButton("我知道了", new DialogInterface.OnClickListener() {
+        new MessageDialog(mainActivity).setMessage("The total number of weeks in the current semester is" + week + "Week, there is more than class time" + week + "Weekly course, please pay attention to the processing.")
+                .setPositiveButton("I know", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         dialog.dismiss();

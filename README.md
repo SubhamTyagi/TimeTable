@@ -1,23 +1,19 @@
-# 我是课程表
-[![API](https://img.shields.io/badge/API-21%2B-green.svg)](https://developer.android.com/about/versions/android-5.0.html)
-[![Build Status](https://www.travis-ci.org/GuJin/TimeTable.svg?branch=master)](https://travis-ci.org/GuJin/TimeTable)
+# TimeTable
+[![API](https://img.shields.io/badge/API-21%2B-green.svg)](https://developer.android.com/about/versions/android-5.0.html) [![Build Status](https://travis-ci.org/SubhamTyagi/TimeTable.svg?branch=master)](https://travis-ci.org/SubhamTyagi/TimeTable)
 
-功能很多，真的用的上么？<br/>
-我是课程表，只保留基本的功能，安安静静做课表。<br/>
-沉下心来，让查课变得简单。
 
-## 截图
-![](/images/screenshots.jpg)
+## Screenshot
 
-## 测试数据
-使用导入课表功能扫描此二维码<br/>
-![](/images/test_course.jpg)
 
 ## TODO
-- [X] 使用教程
-- [X] 桌面小部件
-- [X] 支持单双周
-- [ ] 将所有数据库操作转移至子线程
+- [ ] Use tutorial
+- [X] Desktop widget
+- [X] Support single and double weeks  
+- [ ] Transfer all database operations to child threads
+- [ ] Translate to English
+- [ ] Make sure to available on F-Droid repo
+
+
 
 ## LIB
 - [ToastUtil](https://github.com/GuJin/ToastUtil)
@@ -28,6 +24,7 @@
 
 ## License
     Copyright GuJin
+    Copyright Shubham tyagi(2019)
 
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.

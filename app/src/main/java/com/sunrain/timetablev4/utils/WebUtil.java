@@ -15,7 +15,7 @@ public class WebUtil {
         if (intent.resolveActivity(MyApplication.sContext.getPackageManager()) != null) {
             context.startActivity(intent);
         } else {
-            ToastUtil.show("未检测到浏览器");
+            ToastUtil.show("Browser not detected");
         }
     }
 }

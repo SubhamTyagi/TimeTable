@@ -164,12 +164,12 @@ public class CourseFragment extends BaseFragment implements View.OnClickListener
     private void showClassDialog(int week, int section, int time) {
         List<ClassBean> classes = TableDao.getClasses(week, section, time);
         if (classes.isEmpty()) {
-            ToastUtil.show("无课程");
+            ToastUtil.show("No class");
             return;
         }
 
         if (mClassDialog == null) {
-            mClassDialog = new MessageDialog(mActivity).hideNegativeButton().setPositiveButton("关闭", new DialogInterface.OnClickListener() {
+            mClassDialog = new MessageDialog(mActivity).hideNegativeButton().setPositiveButton("shut down", new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
                     dialog.dismiss();

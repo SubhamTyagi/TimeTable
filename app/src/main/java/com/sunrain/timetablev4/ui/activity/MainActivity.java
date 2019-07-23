@@ -21,7 +21,7 @@ import com.sunrain.timetablev4.ui.fragment.SettingsFragment;
 import com.sunrain.timetablev4.utils.ChannelHelper;
 import com.sunrain.timetablev4.utils.SharedPreUtils;
 import com.sunrain.timetablev4.view.DrawerArrowDrawable;
-import com.tencent.bugly.crashreport.CrashReport;
+
 
 public class MainActivity extends BaseActivity implements View.OnClickListener {
 
@@ -43,7 +43,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
 
     @Override
     protected void initData(@Nullable Bundle savedInstanceState) {
-        initBugly();
+
         CrashHandler.getInstance().init();
         setBackground();
         mSavedInstanceState = savedInstanceState;
@@ -60,16 +60,6 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         WallpaperManager.getInstance().refreshWallpaperInBackground(this);
     }
 
-    private void initBugly() {
-        if (TextUtils.isEmpty(BuildConfig.BUGLY_ID)) {
-            return;
-        }
-        CrashReport.UserStrategy strategy = new CrashReport.UserStrategy(MyApplication.sContext);
-        strategy.setAppVersion(BuildConfig.VERSION_NAME);
-        strategy.setAppPackageName(BuildConfig.APPLICATION_ID);
-        strategy.setAppChannel(ChannelHelper.getChannel());
-        CrashReport.initCrashReport(MyApplication.sContext, BuildConfig.BUGLY_ID, BuildConfig.DEBUG, strategy);
-    }
 
     private void initFragment() {
         mFragmentChanger = new FragmentChanger(getSupportFragmentManager(), R.id.fl_main);

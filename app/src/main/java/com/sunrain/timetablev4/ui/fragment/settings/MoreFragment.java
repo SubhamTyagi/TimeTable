@@ -125,22 +125,22 @@ public class MoreFragment extends BaseFragment implements View.OnClickListener, 
     private void showEmailDialog() {
         String message = getString(R.string.dialog_feedback, BuildConfig.VERSION_NAME);
         MessageDialog messageDialog = new MessageDialog(mActivity).setMessage(message);
-        messageDialog.setPositiveButton("复制邮箱地址", new DialogInterface.OnClickListener() {
+        messageDialog.setPositiveButton("Copy email address", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 dialog.dismiss();
-                ClipboardUtil.writeToClipboard("邮箱", "itimetable@foxmail.com");
-                ToastUtil.show("已复制");
+                ClipboardUtil.writeToClipboard("mailbox", "itimetable@foxmail.com");
+                ToastUtil.show("Copied");
             }
         });
 
         final Intent intent = new Intent(Intent.ACTION_SENDTO);
         intent.setData(Uri.parse("mailto:itimetable@foxmail.com"));
-        intent.putExtra(Intent.EXTRA_SUBJECT, "我是课程表：建议反馈");
+        intent.putExtra(Intent.EXTRA_SUBJECT, "I am a curriculum: suggestion feedback");
         intent.putExtra(Intent.EXTRA_TEXT, getFeedBackInfo());
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         if (intent.resolveActivity(MyApplication.sContext.getPackageManager()) != null) {
-            messageDialog.setNegativeButton("打开邮件应用", new DialogInterface.OnClickListener() {
+            messageDialog.setNegativeButton("Open the mail app", new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
                     dialog.dismiss();
@@ -148,7 +148,7 @@ public class MoreFragment extends BaseFragment implements View.OnClickListener, 
                 }
             });
         } else {
-            messageDialog.setNegativeButton("关闭", new DialogInterface.OnClickListener() {
+            messageDialog.setNegativeButton("shut down", new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
                     dialog.dismiss();
@@ -160,30 +160,30 @@ public class MoreFragment extends BaseFragment implements View.OnClickListener, 
     }
 
     private String getFeedBackInfo() {
-        return "版本:" + BuildConfig.VERSION_NAME + "\n\n";
+        return "version:" + BuildConfig.VERSION_NAME + "\n\n";
     }
 
     private void showClearCourseDialog() {
-        new MessageDialog(mActivity).setMessage("清空所有课程数据？").setNegativeButton(new DialogInterface.OnClickListener() {
+        new MessageDialog(mActivity).setMessage("Clear all course data?").setNegativeButton(new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 dialog.dismiss();
             }
-        }).setPositiveButton("清空", new DialogInterface.OnClickListener() {
+        }).setPositiveButton("Empty", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 dialog.dismiss();
                 TableDao.clearInBackground();
                 CourseClassroomDao.clearInBackground();
                 TableData.getInstance().setContentChange();
-                ToastUtil.show("已清空");
+                ToastUtil.show("Cleared");
             }
         }).show();
     }
 
     private void checkTableDataValid() {
         if (TableDao.isDataBaseEmpty()) {
-            ToastUtil.show("课表空");
+            ToastUtil.show("Empty class schedule");
             return;
         }
         new ShareClassDialog(mActivity).show();
@@ -207,7 +207,7 @@ public class MoreFragment extends BaseFragment implements View.OnClickListener, 
         if (intent.resolveActivity(mActivity.getPackageManager()) != null) {
             startActivity(intent);
         } else {
-            ToastUtil.show("跳转应用市场失败");
+            ToastUtil.show("Jump application market failed");
         }
     }
 
@@ -239,7 +239,7 @@ public class MoreFragment extends BaseFragment implements View.OnClickListener, 
     }
 
     public void importCourseFinished() {
-        ToastUtil.show("导入成功");
+        ToastUtil.show("Successfully imported");
         TableData.getInstance().setContentChange();
     }
 
@@ -254,7 +254,7 @@ public class MoreFragment extends BaseFragment implements View.OnClickListener, 
         } else if (requestCode == REQUEST_INPUT_COURSE && resultCode == Activity.RESULT_OK) {
             String result = data.getStringExtra("result");
             if (TextUtils.isEmpty(result)) {
-                ToastUtil.show("导入失败");
+                ToastUtil.show("Import failed");
                 return;
             }
             new InputCourseAnalysisThread(this, result).start();
@@ -267,11 +267,11 @@ public class MoreFragment extends BaseFragment implements View.OnClickListener, 
             public void onClick(DialogInterface dialog, int which) {
                 dialog.dismiss();
             }
-        }).setPositiveButton("导入", new DialogInterface.OnClickListener() {
+        }).setPositiveButton("Import", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 dialog.dismiss();
-                ToastUtil.show("导入中");
+                ToastUtil.show("Importing");
                 new InputCourseSaveThread(MoreFragment.this, list).start();
             }
         }).show();
@@ -292,10 +292,10 @@ public class MoreFragment extends BaseFragment implements View.OnClickListener, 
     public boolean onLongClick(View v) {
         switch (v.getId()) {
             case R.id.btn_donation:
-                ToastUtil.show("比起金额，更喜欢你们在转账备注里的留言", true);
+                ToastUtil.show("I like your message in the transfer note more than the amount.", true);
                 return true;
             case R.id.btn_feedback:
-                ToastUtil.show("能看到有人发来邮件就已经很高兴了");
+                ToastUtil.show("I am very happy to see someone sending an email.");
                 return true;
         }
         return false;

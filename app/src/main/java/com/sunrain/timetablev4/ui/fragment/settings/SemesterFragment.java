@@ -107,7 +107,7 @@ public class SemesterFragment extends BaseFragment implements View.OnClickListen
                 break;
             case R.id.tv_end:
                 if (mStartDate == 0) {
-                    ToastUtil.show("请先设置起始日期");
+                    ToastUtil.show("Please set the start date first");
                 } else {
                     showEndDatePickerDialog(mEndDate);
                 }
@@ -176,7 +176,7 @@ public class SemesterFragment extends BaseFragment implements View.OnClickListen
                 }
 
                 if (calendarDate < mStartDate) {
-                    ToastUtil.show("结束日期不能小于起始日期");
+                    ToastUtil.show("End date cannot be less than the start date");
                     return;
                 }
 
@@ -187,7 +187,7 @@ public class SemesterFragment extends BaseFragment implements View.OnClickListen
                     TableData.getInstance().setContentChange();
                     dialog.dismiss();
                 } else {
-                    ToastUtil.show("周数超过60,请减小结束日期");
+                    ToastUtil.show("The number of weeks exceeds 60, please reduce the end date");
                 }
             }
         });
@@ -285,8 +285,8 @@ public class SemesterFragment extends BaseFragment implements View.OnClickListen
     }
 
     private void showOutOfWeekDialog(int week) {
-        new MessageDialog(mActivity).setMessage("当前学期总周数为" + week + "周，存在上课时间超出" + week + "周的课程，请注意处理。")
-                .setPositiveButton("我知道了", new DialogInterface.OnClickListener() {
+        new MessageDialog(mActivity).setMessage("The total number of weeks in the current semester is " + week + "week, there is a course that exceeds " + week + " weeks of class time, please pay attention to handling.")
+                .setPositiveButton("I know", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         dialog.dismiss();

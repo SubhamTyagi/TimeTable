@@ -10,8 +10,8 @@ public interface PermissionManager {
     void checkPermission(String[] permissions, int requestCode, @StringRes int hintMessageId, @StringRes int messageId);
 
     /**
-     * @param hintMessage 如果有权限曾被拒绝，弹出提醒的文案
-     * @param message     向系统申请权限前，给用户弹出提示
+     * @param hintMessage If the permission has been denied, the reminder copy is popped up.
+     * @param message     Prompt to the user before applying permission to the system
      */
     void checkPermission(String[] permissions, int requestCode, String hintMessage, String message);
 

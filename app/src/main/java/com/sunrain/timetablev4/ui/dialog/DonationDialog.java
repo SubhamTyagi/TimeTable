@@ -28,7 +28,7 @@ public class DonationDialog extends BaseDialog implements View.OnLongClickListen
         super(activity);
         mActivity = activity;
         hideNegativeButton();
-        setPositiveButton("关闭", new OnClickListener() {
+        setPositiveButton("shut down", new OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 dialog.dismiss();
@@ -52,10 +52,10 @@ public class DonationDialog extends BaseDialog implements View.OnLongClickListen
     public boolean onLongClick(View v) {
         switch (v.getId()) {
             case R.id.imgBtn_ali:
-                saveQRCode("支付宝.jpg", ((BitmapDrawable) mImgBtnAli.getDrawable()).getBitmap());
+                saveQRCode("Alipay.jpg", ((BitmapDrawable) mImgBtnAli.getDrawable()).getBitmap());
                 break;
             case R.id.imgBtn_wechat:
-                saveQRCode("微信.jpg", ((BitmapDrawable) mImgBtnWechat.getDrawable()).getBitmap());
+                saveQRCode("WeChat.jpg", ((BitmapDrawable) mImgBtnWechat.getDrawable()).getBitmap());
                 break;
         }
         return true;

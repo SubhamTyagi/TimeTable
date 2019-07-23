@@ -97,9 +97,9 @@ public class ClassBean {
             sSb.append(sTimeArray[classBean.time]).append("\n");
             sSb.append(classBean.startWeek + 1).append(" ~ ").append(classBean.endWeek + 1).append(" 周");
             if (classBean.doubleWeek == 1) {
-                sSb.append(" ").append("双周");
+                sSb.append(" ").append("Biweekly");
             } else if (classBean.doubleWeek == 2) {
-                sSb.append(" ").append("单周");
+                sSb.append(" ").append("One week");
             }
             return sSb.toString();
         }
@@ -111,9 +111,9 @@ public class ClassBean {
             sSb.append(sTimeArray[classBean.time]).append("\n");
             sSb.append(classBean.startWeek + 1).append(" ~ ").append(classBean.endWeek + 1).append(" 周");
             if (classBean.doubleWeek == 1) {
-                sSb.append(" ").append("双周");
+                sSb.append(" ").append("Biweekly");
             } else if (classBean.doubleWeek == 2) {
-                sSb.append(" ").append("单周");
+                sSb.append(" ").append("One week");
             }
             return sSb.toString();
         }
@@ -168,9 +168,9 @@ public class ClassBean {
             sSb.append(classBean.classroom).append("\n");
             sSb.append(classBean.startWeek + 1).append(" ~ ").append(classBean.endWeek + 1).append(" 周");
             if (classBean.doubleWeek == 1) {
-                sSb.append(" ").append("双周");
+                sSb.append(" ").append("Biweekly");
             } else if (classBean.doubleWeek == 2) {
-                sSb.append(" ").append("单周");
+                sSb.append(" ").append("One week");
             }
             return sSb.toString();
         }

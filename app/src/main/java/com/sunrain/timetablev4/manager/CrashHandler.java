@@ -40,7 +40,7 @@ public class CrashHandler implements Thread.UncaughtExceptionHandler {
                     @Override
                     public void run() {
                         Looper.prepare();
-                        Toast.makeText(MyApplication.sContext, "崩溃了，请邮件向itimetable@foxmail.com反馈", Toast.LENGTH_LONG).show();
+                        Toast.makeText(MyApplication.sContext, "Crash, please email us at itimetable@foxmail.com", Toast.LENGTH_LONG).show();
                         Looper.loop();
                     }
                 }.start();

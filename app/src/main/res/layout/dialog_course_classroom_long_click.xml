@@ -25,7 +25,7 @@
         android:background="?android:attr/selectableItemBackground"
         android:gravity="center_vertical"
         android:paddingStart="16dp"
-        android:text="编辑"
+        android:text="edit"
         android:textColor="@android:color/white"/>
 
     <TextView
@@ -36,7 +36,7 @@
         android:background="?android:attr/selectableItemBackground"
         android:gravity="center_vertical"
         android:paddingStart="16dp"
-        android:text="删除"
+        android:text="delete"
         android:textColor="@android:color/white"/>
 
 </LinearLayout>
