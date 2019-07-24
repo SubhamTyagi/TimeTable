@@ -21,7 +21,7 @@ public class WallpaperManager {
 
     public static final String FILE_NAME = "bg.webp";
 
-    public void refreshWallpaperInBackground(Activity activity) {
+    public void refreshWallpaperInBackground(final Activity activity) {
         final WeakReference<Activity> activityWeakReference = new WeakReference<>(activity);
         RunnableExecutorService.when(new Callable<Drawable>() {
             @Override
@@ -48,7 +48,7 @@ public class WallpaperManager {
         }).fail(new RunnableExecutorService.FailCallback() {
             @Override
             public void fail(Throwable throwable) {
-                ToastUtil.show("Wallpaper failed to load");
+                ToastUtil.show(activity.getResources().getString(R.string.wallpaper_failed_to_load));
             }
         }).execute();
     }

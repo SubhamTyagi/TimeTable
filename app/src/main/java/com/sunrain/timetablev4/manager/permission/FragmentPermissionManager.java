@@ -5,9 +5,11 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.pm.PackageManager;
 import android.os.Build;
-import androidx.fragment.app.Fragment;
-import androidx.core.content.ContextCompat;
 import android.text.TextUtils;
+
+import androidx.core.content.ContextCompat;
+import androidx.fragment.app.Fragment;
+
 import com.sunrain.timetablev4.R;
 
 
@@ -56,7 +58,7 @@ class FragmentPermissionManager extends BasePermissionManager {
             for (String permission : permissions) {
                 if (mFragment.shouldShowRequestPermissionRationale(permission)) {
                     new AlertDialog.Builder(mContext, android.R.style.Theme_Material_Light_Dialog_Alert).setMessage(message)
-                            .setCancelable(false).setPositiveButton(R.string.i_know, new DialogInterface.OnClickListener() {
+                            .setCancelable(false).setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
                             mFragment.requestPermissions(permissions, requestCode);
@@ -69,7 +71,7 @@ class FragmentPermissionManager extends BasePermissionManager {
 
         if (!TextUtils.isEmpty(hintMessage)) {
             new AlertDialog.Builder(mContext, android.R.style.Theme_Material_Light_Dialog_Alert).setMessage(hintMessage)
-                    .setCancelable(false).setPositiveButton(mFragment.getString(R.string.i_know), new DialogInterface.OnClickListener() {
+                    .setCancelable(false).setPositiveButton(mFragment.getString(R.string.ok), new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
                     mFragment.requestPermissions(permissions, requestCode);

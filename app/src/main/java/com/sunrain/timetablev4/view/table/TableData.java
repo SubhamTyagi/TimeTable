@@ -107,7 +107,7 @@ public class TableData {
     }
 
     public void refreshData() {
-        boolean isDoubleWeekEnabled = SharedPreUtils.getInt(SharedPreConstants.DOUBLE_WEEK, SharedPreConstants.DEFAULT_DOUBLE_WEEK) == 1;
+        boolean isDoubleWeekEnabled = SharedPreUtils.getInt(SharedPreConstants.ALTERNATE_WEEK, SharedPreConstants.DEFAULT_DOUBLE_WEEK) == 1;
         if (isDoubleWeekEnabled) {
             mClasses = TableDao.getClasses(mCurrentWeek, CalendarUtil.isDoubleWeek(mCurrentWeek));
         } else {

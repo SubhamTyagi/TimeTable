@@ -25,7 +25,7 @@ public class AppWidgetDao extends BaseDao {
         int number = update(db, TABLE_NAME, values, whereClause, whereArgs);
 
         if (number == 0) {
-            // 使用insertOrReplace会重置其他列的数据
+
             values.put("appWidgetId", appWidgetId);
             insert(db, TABLE_NAME, values);
         }

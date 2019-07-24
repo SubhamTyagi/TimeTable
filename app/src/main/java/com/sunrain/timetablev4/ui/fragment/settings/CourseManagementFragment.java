@@ -11,7 +11,9 @@ import android.view.ViewTreeObserver;
 import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.ListView;
+
 import androidx.annotation.Nullable;
+
 import com.sunrain.timetablev4.R;
 import com.sunrain.timetablev4.adapter.course_management.ClassTimeAdapter;
 import com.sunrain.timetablev4.adapter.course_management.CourseClassroomAdapter;
@@ -28,9 +30,10 @@ import com.sunrain.timetablev4.utils.DensityUtil;
 import com.sunrain.timetablev4.utils.SharedPreUtils;
 import com.sunrain.timetablev4.utils.SystemUiUtil;
 import com.sunrain.timetablev4.view.table.TableData;
-import tech.gujin.toast.ToastUtil;
 
 import java.util.List;
+
+import tech.gujin.toast.ToastUtil;
 
 public class CourseManagementFragment extends BaseFragment implements ViewTreeObserver.OnGlobalLayoutListener, View.OnClickListener,
         AdapterView.OnItemClickListener, AdapterView.OnItemLongClickListener {
@@ -84,7 +87,7 @@ public class CourseManagementFragment extends BaseFragment implements ViewTreeOb
 
     private void initClassTimeListView() {
         mClassTimeAdapter = new ClassTimeAdapter(mActivity, mLvClassTime);
-        mClassTimeAdapter.setDoubleWeekEnabled(SharedPreUtils.getInt(SharedPreConstants.DOUBLE_WEEK, SharedPreConstants
+        mClassTimeAdapter.setDoubleWeekEnabled(SharedPreUtils.getInt(SharedPreConstants.ALTERNATE_WEEK, SharedPreConstants
                 .DEFAULT_DOUBLE_WEEK) == 1);
         mLvClassTime.setAdapter(mClassTimeAdapter);
 
@@ -135,18 +138,18 @@ public class CourseManagementFragment extends BaseFragment implements ViewTreeOb
         String classroom = mEtClassroom.getText().toString();
 
         if (TextUtils.isEmpty(course)) {
-            ToastUtil.show("Course name cannot be empty");
+            ToastUtil.show(getResources().getString(R.string.course_name_cant_empty));
             return;
         }
 
         if (TextUtils.isEmpty(classroom)) {
-            ToastUtil.show("Class location cannot be empty");
+            ToastUtil.show(getResources().getString(R.string.class_loc_cant_empty));
             return;
         }
 
         CourseClassroomBean bean = new CourseClassroomBean(course, classroom);
         if (CourseClassroomDao.exists(bean)) {
-            ToastUtil.show("Already have the same entry");
+            ToastUtil.show(getResources().getString(R.string.already_have_the_same_entry));
             return;
         }
 
@@ -157,14 +160,14 @@ public class CourseManagementFragment extends BaseFragment implements ViewTreeOb
         long startDate = SharedPreUtils.getLong(SharedPreConstants.SEMESTER_START_DATE, 0);
         long endDate = SharedPreUtils.getLong(SharedPreConstants.SEMESTER_END_DATE, 0);
         if (startDate == 0 || endDate == 0) {
-            new MessageDialog(mActivity).setMessage("Please set the semester date first.")
+            new MessageDialog(mActivity).setMessage(getResources().getString(R.string.set_sem_date_first))
                     .setNegativeButton(new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
                             dialog.dismiss();
                         }
                     })
-                    .setPositiveButton("Go to set", new DialogInterface.OnClickListener() {
+                    .setPositiveButton(getResources().getString(R.string.go_to_set), new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
                             dialog.dismiss();
@@ -172,7 +175,7 @@ public class CourseManagementFragment extends BaseFragment implements ViewTreeOb
                             if (settingsFragment != null) {
                                 settingsFragment.showSemesterFragment();
                             } else {
-                                ToastUtil.show("Jump failed, please set it manually");
+                                ToastUtil.show(getResources().getString(R.string.jump_failed_plz_set_it_manually));
                             }
                         }
                     })
@@ -261,12 +264,12 @@ public class CourseManagementFragment extends BaseFragment implements ViewTreeOb
                 final String classroom = editDialog.getClassroom();
 
                 if (TextUtils.isEmpty(course)) {
-                    ToastUtil.show("Course name cannot be empty");
+                    ToastUtil.show(getResources().getString(R.string.course_cant_empty));
                     return;
                 }
 
                 if (TextUtils.isEmpty(classroom)) {
-                    ToastUtil.show("Class location cannot be empty");
+                    ToastUtil.show(R.string.class_loc_cant_empty);
                     return;
                 }
 
@@ -278,7 +281,7 @@ public class CourseManagementFragment extends BaseFragment implements ViewTreeOb
                 CourseClassroomBean newBean = new CourseClassroomBean(course, classroom);
 
                 if (CourseClassroomDao.exists(newBean)) {
-                    ToastUtil.show("Already have the same entry");
+                    ToastUtil.show(getResources().getString(R.string.already_have_the_saame_entry));
                 } else {
                     dialog.dismiss();
                     updateCourseClassroom(bean, newBean);
@@ -299,14 +302,14 @@ public class CourseManagementFragment extends BaseFragment implements ViewTreeOb
     }
 
     private void showDeleteCourseClassroomDialog(final CourseClassroomBean bean) {
-        new MessageDialog(mActivity).setMessage("delete " + bean.course + " " + bean.classroom + " 下所有课程？")
+        new MessageDialog(mActivity).setMessage(getString(R.string.delete) + bean.course + " " + bean.classroom + getResources().getString(R.string.courses))
                 .setNegativeButton(new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         dialog.dismiss();
                     }
                 })
-                .setPositiveButton("delete", new DialogInterface.OnClickListener() {
+                .setPositiveButton(getString(R.string.delete), new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         dialog.dismiss();
@@ -347,7 +350,7 @@ public class CourseManagementFragment extends BaseFragment implements ViewTreeOb
             mCourseClassroomAdapter.setClickPosition(-1);
             mCourseClassroomAdapter.notifyDataSetChanged();
             mLvClassTime.setVisibility(View.INVISIBLE);
-            mClassTimeAdapter.setDoubleWeekEnabled(SharedPreUtils.getInt(SharedPreConstants.DOUBLE_WEEK, SharedPreConstants
+            mClassTimeAdapter.setDoubleWeekEnabled(SharedPreUtils.getInt(SharedPreConstants.ALTERNATE_WEEK, SharedPreConstants
                     .DEFAULT_DOUBLE_WEEK) == 1);
             mClassTimeAdapter.setDialogNull();
         }

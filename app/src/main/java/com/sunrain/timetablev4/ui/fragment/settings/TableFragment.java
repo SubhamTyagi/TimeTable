@@ -1,7 +1,6 @@
 package com.sunrain.timetablev4.ui.fragment.settings;
 
 import android.os.Bundle;
-import androidx.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,6 +9,8 @@ import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.Switch;
+
+import androidx.annotation.Nullable;
 
 import com.sunrain.timetablev4.R;
 import com.sunrain.timetablev4.base.BaseFragment;
@@ -54,7 +55,7 @@ public class TableFragment extends BaseFragment implements CompoundButton.OnChec
     }
 
     private void initSwitch() {
-        int enabled = SharedPreUtils.getInt(SharedPreConstants.DOUBLE_WEEK, SharedPreConstants.DEFAULT_DOUBLE_WEEK);
+        int enabled = SharedPreUtils.getInt(SharedPreConstants.ALTERNATE_WEEK, SharedPreConstants.DEFAULT_DOUBLE_WEEK);
         mSwDoubleWeek.setChecked(enabled == 1);
     }
 
@@ -123,7 +124,7 @@ public class TableFragment extends BaseFragment implements CompoundButton.OnChec
     public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
         switch (buttonView.getId()) {
             case R.id.sw_double_week:
-                SharedPreUtils.putInt(SharedPreConstants.DOUBLE_WEEK, isChecked ? 1 : 0);
+                SharedPreUtils.putInt(SharedPreConstants.ALTERNATE_WEEK, isChecked ? 1 : 0);
                 TableData.getInstance().setContentChange();
                 break;
             case R.id.cb_sat:

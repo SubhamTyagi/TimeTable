@@ -8,6 +8,7 @@ import android.os.SystemClock;
 import android.os.TransactionTooLargeException;
 import android.widget.Toast;
 
+import com.sunrain.timetablev4.R;
 import com.sunrain.timetablev4.application.MyApplication;
 
 import java.io.File;
@@ -40,7 +41,7 @@ public class CrashHandler implements Thread.UncaughtExceptionHandler {
                     @Override
                     public void run() {
                         Looper.prepare();
-                        Toast.makeText(MyApplication.sContext, "Crash, please email us at itimetable@foxmail.com", Toast.LENGTH_LONG).show();
+                        Toast.makeText(MyApplication.sContext, MyApplication.sContext.getResources().getString(R.string.crash_email_msg), Toast.LENGTH_LONG).show();
                         Looper.loop();
                     }
                 }.start();

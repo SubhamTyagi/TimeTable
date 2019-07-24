@@ -50,7 +50,6 @@ public class AppWidgetConfigureActivity extends Activity implements View.OnClick
         initView();
         setListener();
 
-        // 某些机型可以重复拉起这个activity
         Map<String, Integer> configMap = AppWidgetDao.getAppWidgetConfig(mAppWidgetId);
         if (configMap != null) {
             setConfig(configMap);
@@ -79,7 +78,7 @@ public class AppWidgetConfigureActivity extends Activity implements View.OnClick
         if (backgroundColor != null && backgroundColor != -1) {
             int r = (int) (((backgroundColor >> 16) & 0xff) / 255.0f * 100);
             if (r == 0) {
-                //当前版本只有黑白两色
+
                 mRgBgColor.check(R.id.rb_black);
             } else {
                 mRgBgColor.check(R.id.rb_white);
@@ -175,10 +174,8 @@ public class AppWidgetConfigureActivity extends Activity implements View.OnClick
 
     @Override
     public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-        switch (buttonView.getId()) {
-            case R.id.cb_week:
-                setWeekHintText(isChecked);
-                break;
+        if (buttonView.getId() == R.id.cb_week) {
+            setWeekHintText(isChecked);
         }
     }
 

@@ -2,6 +2,8 @@ package com.sunrain.timetablev4.thread;
 
 import android.content.DialogInterface;
 
+import com.sunrain.timetablev4.R;
+import com.sunrain.timetablev4.application.MyApplication;
 import com.sunrain.timetablev4.constants.SharedPreConstants;
 import com.sunrain.timetablev4.dao.CourseClassroomDao;
 import com.sunrain.timetablev4.dao.TableDao;
@@ -31,7 +33,7 @@ public class DataCheckThread extends Thread {
 
         if (mLastVersionCode == 0) {
             if (mainActivity == null) {
-                ToastUtil.postShow("Please see the tutorial in more", true);
+                ToastUtil.postShow(MyApplication.sContext.getResources().getString(R.string.see_tutorial_in_more), true);
                 return;
             }
 
@@ -45,10 +47,10 @@ public class DataCheckThread extends Thread {
         }
 
         // 23 Start joining biweekly, 25 changed biweekly rules
-        if ((mLastVersionCode == 23 || mLastVersionCode == 24) && SharedPreUtils.getInt(SharedPreConstants.DOUBLE_WEEK,
+        if ((mLastVersionCode == 23 || mLastVersionCode == 24) && SharedPreUtils.getInt(SharedPreConstants.ALTERNATE_WEEK,
                 SharedPreConstants.DEFAULT_DOUBLE_WEEK) == 1) {
             if (mainActivity == null) {
-                ToastUtil.postShow("Please check the one-week course configuration", true);
+                ToastUtil.postShow(MyApplication.sContext.getResources().getString(R.string.plz_check_one_week_course_config), true);
                 return;
             }
 
@@ -64,26 +66,26 @@ public class DataCheckThread extends Thread {
         // 学期检查
         long startDateTime = SharedPreUtils.getLong(SharedPreConstants.SEMESTER_START_DATE, 0);
         if (startDateTime == 0) {
-            ToastUtil.postShow("Please set the semester start date", true);
+            ToastUtil.postShow(MyApplication.sContext.getResources().getString(R.string.set_sem_start_date), true);
             return;
         }
 
         long endDate = SharedPreUtils.getLong(SharedPreConstants.SEMESTER_END_DATE, 0);
         if (endDate == 0) {
-            ToastUtil.postShow("Please set the semester end date", true);
+            ToastUtil.postShow(MyApplication.sContext.getResources().getString(R.string.set_sem_end_date), true);
             return;
         }
 
-        final int week = SharedPreUtils.getInt(SharedPreConstants.SEMESTER_WEEK, SharedPreConstants.DEFAULT_SEMESTER_WEEK);
+        final int week = SharedPreUtils.getInt(SharedPreConstants.DURATION_WEEK, SharedPreConstants.DEFAULT_SEMESTER_WEEK);
         int currentWeek = CalendarUtil.getCurrentWeek();
         if (currentWeek < 0 || currentWeek > week - 1) {
-            ToastUtil.postShow("The current number of weeks has exceeded the total number of weeks in the semester", true);
+            ToastUtil.postShow(MyApplication.sContext.getResources().getString(R.string.exceed_the_total_number_of_week), true);
             return;
         }
 
         if (TableDao.existsOutOfWeek(week - 1)) {
             if (mainActivity == null) {
-                ToastUtil.postShow("There are more than the total number of weeks in the semester" + week + "周的课程", true);
+                ToastUtil.postShow(mainActivity.getResources().getString(R.string.more_than_total_week) + week + mainActivity.getResources().getString(R.string.weekly_course), true);
                 return;
             }
 
@@ -98,24 +100,25 @@ public class DataCheckThread extends Thread {
 
         // Course inspection
         if (CourseClassroomDao.isDataBaseEmpty()) {
-            ToastUtil.postShow("Please add a course", true);
+            ToastUtil.postShow(mainActivity.getResources().getString(R.string.plz_add_course), true);
             return;
         }
 
         if (TableDao.isDataBaseEmpty()) {
-            ToastUtil.postShow("Please add class time to the course", true);
+            ToastUtil.postShow(mainActivity.getResources().getString(R.string.plz_add_class_time_course), true);
+
             return;
         }
 
-        if (SharedPreUtils.getInt(SharedPreConstants.DOUBLE_WEEK, SharedPreConstants.DEFAULT_DOUBLE_WEEK) == 0 && TableDao
+        if (SharedPreUtils.getInt(SharedPreConstants.ALTERNATE_WEEK, SharedPreConstants.DEFAULT_DOUBLE_WEEK) == 0 && TableDao
                 .existsDoubleWeek()) {
-            ToastUtil.postShow("There are biweekly courses, but single and double week functions are not enabled", true);
+            ToastUtil.postShow(mainActivity.getResources().getString(R.string.alternate_week_courese_available), true);
         }
     }
 
     private void showDoubleWeekDialog(final MainActivity mainActivity) {
-        new MessageDialog(mainActivity).setMessage("The single and double week functions have been optimized, and the rules for one week have changed. Please adjust the one-week course in the class schedule in time.")
-                .setPositiveButton("I know", new DialogInterface.OnClickListener() {
+        new MessageDialog(mainActivity).setMessage(mainActivity.getResources().getString(R.string.alternate_week_function_optimized))
+                .setPositiveButton(mainActivity.getResources().getString(R.string.ok), new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         dialog.dismiss();
@@ -126,27 +129,26 @@ public class DataCheckThread extends Thread {
     }
 
     private void showTutorialDialog(final MainActivity mainActivity) {
-        new MessageDialog(mainActivity).setMessage("I suggest you check out the tutorial first.\n" +
-                "Or check back later in more.")
-                .setNegativeButton("shut down", new DialogInterface.OnClickListener() {
+        new MessageDialog(mainActivity).setMessage(mainActivity.getResources().getString(R.string.i_suggest_you_tutorial))
+                .setNegativeButton(mainActivity.getResources().getString(R.string.cancel), new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         dialog.dismiss();
                     }
                 })
-                .setPositiveButton("View tutorial", new DialogInterface.OnClickListener() {
+                .setPositiveButton(mainActivity.getResources().getString(R.string.view_tutorial), new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         dialog.dismiss();
-                        WebUtil.gotoWeb(mainActivity, "http://timetable.gujin.tech/tutorial.html");
+                        WebUtil.gotoWeb(mainActivity, mainActivity.getResources().getString(R.string.website_url));
                     }
                 })
                 .show();
     }
 
     private void showOutOfWeekDialog(MainActivity mainActivity, int week) {
-        new MessageDialog(mainActivity).setMessage("The total number of weeks in the current semester is" + week + "Week, there is more than class time" + week + "Weekly course, please pay attention to the processing.")
-                .setPositiveButton("I know", new DialogInterface.OnClickListener() {
+        new MessageDialog(mainActivity).setMessage(String.format(mainActivity.getResources().getString(R.string.total_number_of_exceed), week, week))
+                .setPositiveButton(mainActivity.getResources().getString(R.string.ok), new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         dialog.dismiss();

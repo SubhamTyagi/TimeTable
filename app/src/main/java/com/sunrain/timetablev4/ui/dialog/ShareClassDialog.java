@@ -155,7 +155,7 @@ public class ShareClassDialog extends Dialog implements View.OnClickListener {
         protected void onPostExecute(Bitmap bitmap) {
             ShareClassDialog shareClassDialog = mShareClassDialogWeakReference.get();
             if (shareClassDialog == null) {
-                ToastUtil.show("Generate QR code error");
+                ToastUtil.show(MyApplication.sContext.getResources().getString(R.string.generate_qr_code_erroe));
                 return;
             }
 
@@ -167,7 +167,7 @@ public class ShareClassDialog extends Dialog implements View.OnClickListener {
                 shareClassDialog.mImgBtnClose.setOnClickListener(shareClassDialog);
                 shareClassDialog.mImgBtnSave.setOnClickListener(shareClassDialog);
             } else {
-                shareClassDialog.mTvProgress.setText("Generate QR code error");
+                shareClassDialog.mTvProgress.setText(MyApplication.sContext.getResources().getString(R.string.generate_qr_code_erroe));
                 shareClassDialog.mImgBtnClose.setVisibility(View.VISIBLE);
                 shareClassDialog.mImgBtnClose.setOnClickListener(shareClassDialog);
             }

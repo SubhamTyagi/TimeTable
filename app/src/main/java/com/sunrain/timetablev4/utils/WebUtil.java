@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 
+import com.sunrain.timetablev4.R;
 import com.sunrain.timetablev4.application.MyApplication;
 
 import tech.gujin.toast.ToastUtil;
@@ -15,7 +16,7 @@ public class WebUtil {
         if (intent.resolveActivity(MyApplication.sContext.getPackageManager()) != null) {
             context.startActivity(intent);
         } else {
-            ToastUtil.show("Browser not detected");
+            ToastUtil.show(MyApplication.sContext.getResources().getString(R.string.browser_not_installed));
         }
     }
 }

@@ -2,7 +2,6 @@ package com.sunrain.timetablev4.ui.fragment;
 
 import android.content.DialogInterface;
 import android.os.Bundle;
-import androidx.annotation.Nullable;
 import android.text.format.DateUtils;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,6 +9,8 @@ import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.TextView;
+
+import androidx.annotation.Nullable;
 
 import com.sunrain.timetablev4.R;
 import com.sunrain.timetablev4.base.BaseFragment;
@@ -164,7 +165,7 @@ public class CourseFragment extends BaseFragment implements View.OnClickListener
     private void showClassDialog(int week, int section, int time) {
         List<ClassBean> classes = TableDao.getClasses(week, section, time);
         if (classes.isEmpty()) {
-            ToastUtil.show("No class");
+            ToastUtil.show(R.string.no_class);
             return;
         }
 

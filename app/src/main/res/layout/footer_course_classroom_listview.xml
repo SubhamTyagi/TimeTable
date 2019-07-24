@@ -27,5 +27,5 @@
         android:id="@+id/btn_add_course_classroom"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Add course" />
+        android:text="@string/add_schedule" />
 </LinearLayout>

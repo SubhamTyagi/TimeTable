@@ -4,6 +4,8 @@ import android.os.Handler;
 import android.os.Looper;
 import android.text.TextUtils;
 
+import com.sunrain.timetablev4.R;
+import com.sunrain.timetablev4.application.MyApplication;
 import com.sunrain.timetablev4.bean.ClassBean;
 import com.sunrain.timetablev4.ui.fragment.settings.MoreFragment;
 import com.sunrain.timetablev4.utils.ClassQrCodeHelper;
@@ -32,7 +34,7 @@ public class InputCourseAnalysisThread extends Thread {
     public void run() {
         String json = ZipUtil.unzipString(mResult);
         if (TextUtils.isEmpty(json)) {
-            ToastUtil.postShow("Parsing QR code error");
+            ToastUtil.postShow(MyApplication.sContext.getResources().getString(R.string.parshing_qr_code_error));
             return;
         }
 
@@ -50,13 +52,13 @@ public class InputCourseAnalysisThread extends Thread {
         }
 
         if (list == null) {
-            ToastUtil.postShow("Parsing QR code error");
+            ToastUtil.postShow(MyApplication.sContext.getResources().getString(R.string.parshing_qr_code_error));
             return;
         }
 
         final MoreFragment moreFragment = mAboutFragmentWeakReference.get();
         if (moreFragment == null) {
-            ToastUtil.postShow("Exception please try again");
+            ToastUtil.postShow(MyApplication.sContext.getResources().getString(R.string.error_parsing));
             return;
         }
 

@@ -1,6 +1,7 @@
 package com.sunrain.timetablev4.bean;
 
 import android.content.res.Resources;
+
 import androidx.annotation.NonNull;
 
 import com.sunrain.timetablev4.R;
@@ -15,13 +16,13 @@ import java.util.List;
 public class ClassBean {
 
     public long _id;
-    //week + section + time = 周二 + 下午 + 第三节
+    //week + section + time =Tuesday + afternoon + third quarter
     public int week;
     public int section;
     public int time;
     public int startWeek;
     public int endWeek;
-    public int doubleWeek;//0 未设置或单双周,1 双周,2 单周
+    public int doubleWeek;//0 Not set or single and double weeks, 1 double week, 2 single week
     public String course;
     public String classroom;
 

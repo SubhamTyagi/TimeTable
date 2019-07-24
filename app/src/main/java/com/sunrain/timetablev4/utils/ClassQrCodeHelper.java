@@ -1,5 +1,7 @@
 package com.sunrain.timetablev4.utils;
 
+import com.sunrain.timetablev4.R;
+import com.sunrain.timetablev4.application.MyApplication;
 import com.sunrain.timetablev4.bean.ClassBean;
 
 import org.json.JSONArray;
@@ -68,7 +70,7 @@ public class ClassQrCodeHelper {
         }
 
         if (version > sVersion) {
-            ToastUtil.postShow("The QR code version is high, please upgrade to the latest version. I am the curriculum.", true, ToastUtil.Mode.NORMAL);
+            ToastUtil.postShow(MyApplication.sContext.getResources().getString(R.string.update_app_qr_code_is_high), true, ToastUtil.Mode.NORMAL);
             return null;
         }
 
@@ -107,7 +109,7 @@ public class ClassQrCodeHelper {
      * 不含有course classroom信息
      */
     private static int zipForVersion2(ClassBean classBean) {
-        // 如果还要增加字段的话需要留意int最大值
+        //
         return classBean.doubleWeek * 10000000 + classBean.endWeek * 100000 + classBean.startWeek * 1000 + classBean.week * 100 +
                 classBean.section * 10 + classBean.time;
     }

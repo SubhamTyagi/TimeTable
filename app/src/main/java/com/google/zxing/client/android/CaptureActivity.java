@@ -28,11 +28,24 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.provider.MediaStore;
-import androidx.annotation.NonNull;
 import android.text.TextUtils;
 import android.util.Log;
-import android.view.*;
-import com.google.zxing.*;
+import android.view.KeyEvent;
+import android.view.SurfaceHolder;
+import android.view.SurfaceView;
+import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
+
+import androidx.annotation.NonNull;
+
+import com.google.zxing.BarcodeFormat;
+import com.google.zxing.BinaryBitmap;
+import com.google.zxing.DecodeHintType;
+import com.google.zxing.MultiFormatReader;
+import com.google.zxing.NotFoundException;
+import com.google.zxing.RGBLuminanceSource;
+import com.google.zxing.Result;
 import com.google.zxing.client.android.camera.CameraManager;
 import com.google.zxing.common.HybridBinarizer;
 import com.sunrain.timetablev4.R;
@@ -40,7 +53,6 @@ import com.sunrain.timetablev4.application.MyApplication;
 import com.sunrain.timetablev4.manager.permission.PermissionManager;
 import com.sunrain.timetablev4.utils.RunnableExecutorService;
 import com.sunrain.timetablev4.view.CropImageView.util.Utils;
-import tech.gujin.toast.ToastUtil;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -48,6 +60,8 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.concurrent.Callable;
+
+import tech.gujin.toast.ToastUtil;
 
 /**
  * This activity opens the camera and does the actual scanning on a background thread. It draws a
@@ -225,7 +239,7 @@ public final class CaptureActivity extends Activity implements SurfaceHolder.Cal
     public void handleDecode(String resultString) {
         inactivityTimer.onActivity();
         if (TextUtils.isEmpty(resultString)) {
-            ToastUtil.show("QR code error");
+            ToastUtil.show(getResources().getString(R.string.qr_code_error));
             finish();
             return;
         }
@@ -276,10 +290,8 @@ public final class CaptureActivity extends Activity implements SurfaceHolder.Cal
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()) {
-            case R.id.btn_photo:
-                checkPhotoPermission();
-                break;
+        if (v.getId() == R.id.btn_photo) {
+            checkPhotoPermission();
         }
     }
 
@@ -311,20 +323,18 @@ public final class CaptureActivity extends Activity implements SurfaceHolder.Cal
         if (resultCode != Activity.RESULT_OK) {
             return;
         }
-        switch (requestCode) {
-            case REQUEST_PICK_IMAGE:
-                analysisImage(data.getData());
-                break;
+        if (requestCode == REQUEST_PICK_IMAGE) {
+            analysisImage(data.getData());
         }
 
     }
 
     private void analysisImage(final Uri uri) {
         if (uri == null) {
-            ToastUtil.show("Failed to load image");
+            ToastUtil.show(getResources().getString(R.string.failed_to_load_image));
             return;
         }
-        //解析图片
+
         RunnableExecutorService.when(new Callable<String>() {
             @Override
             public String call() {

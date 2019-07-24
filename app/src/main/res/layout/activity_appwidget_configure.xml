@@ -11,7 +11,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="12dp"
-        android:text="background color"
+        android:text="@string/background_color"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"/>
 
@@ -30,13 +30,13 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:checked="true"
-            android:text="black" />
+            android:text="@string/black" />
 
         <RadioButton
             android:id="@+id/rb_white"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="white" />
+            android:text="@string/white" />
 
     </RadioGroup>
 
@@ -46,7 +46,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="12dp"
-        android:text="Background color intensity（15%）"
+        android:text="@string/background_color_intensity_15"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/rg_bg_color"/>
 
@@ -69,7 +69,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="12dp"
-        android:text="Time style (first session of the morning)"
+        android:text="@string/time_style_first_session_of_the_morning"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/sb_intensity"/>
 
@@ -88,19 +88,19 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:checked="true"
-            android:text="Style 1" />
+            android:text="@string/style_1" />
 
         <RadioButton
             android:id="@+id/rb_time_style_2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Style 2" />
+            android:text="@string/style_2" />
 
         <RadioButton
             android:id="@+id/rb_time_style_3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Style 3" />
+            android:text="@string/style_3" />
 
     </RadioGroup>
 

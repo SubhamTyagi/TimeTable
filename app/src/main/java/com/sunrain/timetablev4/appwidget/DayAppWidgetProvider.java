@@ -12,6 +12,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.RemoteViews;
+
 import com.sunrain.timetablev4.BuildConfig;
 import com.sunrain.timetablev4.R;
 import com.sunrain.timetablev4.application.MyApplication;
@@ -77,48 +78,19 @@ public class DayAppWidgetProvider extends AppWidgetProvider {
         }
     }
 
-    @Override
-    public void onReceive(Context context, Intent intent) {
-        // 除了自己的action 还有系统的
-        String action = intent.getAction();
+    public static void noticeAppWidgetViewDataChanger() {
+        AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(MyApplication.sContext);
+        int[] appWidgetIds = appWidgetManager.getAppWidgetIds(new ComponentName(MyApplication.sContext,
+                DayAppWidgetProvider.class));
 
-        if (ACTION_NEW_DAY.equals(action)) {
-            notifyUpdate(context);
-            return;
+        appWidgetManager.notifyAppWidgetViewDataChanged(appWidgetIds, R.id.lv_day_appwidget);
+
+        for (int appWidgetId : appWidgetIds) {
+
+            RemoteViews views = new RemoteViews(MyApplication.sContext.getPackageName(), R.layout.day_appwidget);
+            views.setTextViewText(R.id.tv_date, getDateText(appWidgetId, System.currentTimeMillis(), new SimpleDateFormat("M月d日 E", Locale.getDefault())));
+            appWidgetManager.partiallyUpdateAppWidget(appWidgetId, views);
         }
-
-        if (ACTION_RESTORE.equals(action) || ACTION_YESTERDAY.equals(action) || ACTION_TOMORROW.equals(action)) {
-
-            SimpleDateFormat simpleDateFormat = new SimpleDateFormat("M月d日 E", Locale.getDefault());
-            AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(context);
-            RemoteViews rv = new RemoteViews(context.getPackageName(), R.layout.day_appwidget);
-            int appWidgetId = intent.getIntExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, AppWidgetManager
-                    .INVALID_APPWIDGET_ID);
-
-            long currentTime;
-            long newTime;
-
-            if (ACTION_RESTORE.equals(action)) {
-                rv.setViewVisibility(R.id.imgBtn_restore, View.INVISIBLE);
-                newTime = System.currentTimeMillis();
-            } else if (ACTION_YESTERDAY.equals(action)) {
-                rv.setViewVisibility(R.id.imgBtn_restore, View.VISIBLE);
-                currentTime = AppWidgetDao.getAppWidgetCurrentTime(appWidgetId, System.currentTimeMillis());
-                newTime = currentTime - ONE_DAY_MILLIS;
-            } else { //ACTION_TOMORROW
-                rv.setViewVisibility(R.id.imgBtn_restore, View.VISIBLE);
-                currentTime = AppWidgetDao.getAppWidgetCurrentTime(appWidgetId, System.currentTimeMillis());
-                newTime = currentTime + ONE_DAY_MILLIS;
-            }
-
-            AppWidgetDao.saveAppWidgetCurrentTime(appWidgetId, newTime);
-            rv.setTextViewText(R.id.tv_date, getDateText(appWidgetId, newTime, simpleDateFormat));
-
-            appWidgetManager.notifyAppWidgetViewDataChanged(appWidgetId, R.id.lv_day_appwidget);
-            appWidgetManager.partiallyUpdateAppWidget(appWidgetId, rv);
-        }
-
-        super.onReceive(context, intent);
     }
 
     @Override
@@ -162,19 +134,49 @@ public class DayAppWidgetProvider extends AppWidgetProvider {
         appWidgetManager.partiallyUpdateAppWidget(appWidgetId, views);
     }
 
-    public static void noticeAppWidgetViewDataChanger() {
-        AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(MyApplication.sContext);
-        int[] appWidgetIds = appWidgetManager.getAppWidgetIds(new ComponentName(MyApplication.sContext,
-                DayAppWidgetProvider.class));
+    @Override
+    public void onReceive(Context context, Intent intent) {
 
-        appWidgetManager.notifyAppWidgetViewDataChanged(appWidgetIds, R.id.lv_day_appwidget);
+        String action = intent.getAction();
 
-        for (int appWidgetId : appWidgetIds) {
-            // 如果有显示当前周数的话 还要刷新周数
-            RemoteViews views = new RemoteViews(MyApplication.sContext.getPackageName(), R.layout.day_appwidget);
-            views.setTextViewText(R.id.tv_date, getDateText(appWidgetId, System.currentTimeMillis(), new SimpleDateFormat("M月d日 E", Locale.getDefault())));
-            appWidgetManager.partiallyUpdateAppWidget(appWidgetId, views);
+        if (ACTION_NEW_DAY.equals(action)) {
+            notifyUpdate(context);
+            return;
         }
+
+        if (ACTION_RESTORE.equals(action) || ACTION_YESTERDAY.equals(action) || ACTION_TOMORROW.equals(action)) {
+
+            //TODO: date format
+            SimpleDateFormat simpleDateFormat = new SimpleDateFormat("M d  E", Locale.getDefault());
+            AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(context);
+            RemoteViews rv = new RemoteViews(context.getPackageName(), R.layout.day_appwidget);
+            int appWidgetId = intent.getIntExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, AppWidgetManager
+                    .INVALID_APPWIDGET_ID);
+
+            long currentTime;
+            long newTime;
+
+            if (ACTION_RESTORE.equals(action)) {
+                rv.setViewVisibility(R.id.imgBtn_restore, View.INVISIBLE);
+                newTime = System.currentTimeMillis();
+            } else if (ACTION_YESTERDAY.equals(action)) {
+                rv.setViewVisibility(R.id.imgBtn_restore, View.VISIBLE);
+                currentTime = AppWidgetDao.getAppWidgetCurrentTime(appWidgetId, System.currentTimeMillis());
+                newTime = currentTime - ONE_DAY_MILLIS;
+            } else { //ACTION_TOMORROW
+                rv.setViewVisibility(R.id.imgBtn_restore, View.VISIBLE);
+                currentTime = AppWidgetDao.getAppWidgetCurrentTime(appWidgetId, System.currentTimeMillis());
+                newTime = currentTime + ONE_DAY_MILLIS;
+            }
+
+            AppWidgetDao.saveAppWidgetCurrentTime(appWidgetId, newTime);
+            rv.setTextViewText(R.id.tv_date, getDateText(appWidgetId, newTime, simpleDateFormat));
+
+            appWidgetManager.notifyAppWidgetViewDataChanged(appWidgetId, R.id.lv_day_appwidget);
+            appWidgetManager.partiallyUpdateAppWidget(appWidgetId, rv);
+        }
+
+        super.onReceive(context, intent);
     }
 
     public void notifyUpdate(Context context) {
@@ -198,9 +200,9 @@ public class DayAppWidgetProvider extends AppWidgetProvider {
         Calendar midnight = Calendar.getInstance(Locale.getDefault());
         midnight.set(Calendar.HOUR_OF_DAY, 0);
         midnight.set(Calendar.MINUTE, 0);
-        midnight.set(Calendar.SECOND, 1); // 只是为了确保肯定在明天
+        midnight.set(Calendar.SECOND, 1); //
         midnight.set(Calendar.MILLISECOND, 0);
-        midnight.add(Calendar.DAY_OF_YEAR, 1); // 设置为明天
+        midnight.add(Calendar.DAY_OF_YEAR, 1);
 
         alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, midnight.getTimeInMillis(), ONE_DAY_MILLIS, pendingIntent);
     }

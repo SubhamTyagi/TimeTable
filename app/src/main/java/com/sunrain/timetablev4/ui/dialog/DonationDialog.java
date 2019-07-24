@@ -28,7 +28,7 @@ public class DonationDialog extends BaseDialog implements View.OnLongClickListen
         super(activity);
         mActivity = activity;
         hideNegativeButton();
-        setPositiveButton("shut down", new OnClickListener() {
+        setPositiveButton(getContext().getResources().getString(R.string.cancel), new OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 dialog.dismiss();

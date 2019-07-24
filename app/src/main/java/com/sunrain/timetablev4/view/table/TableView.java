@@ -6,7 +6,6 @@ import android.content.res.Resources;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.os.Build;
-import androidx.annotation.NonNull;
 import android.text.Layout;
 import android.text.StaticLayout;
 import android.text.TextPaint;
@@ -19,6 +18,8 @@ import android.view.View;
 import android.view.ViewConfiguration;
 import android.widget.EdgeEffect;
 import android.widget.OverScroller;
+
+import androidx.annotation.NonNull;
 
 import com.sunrain.timetablev4.R;
 import com.sunrain.timetablev4.bean.ClassBean;

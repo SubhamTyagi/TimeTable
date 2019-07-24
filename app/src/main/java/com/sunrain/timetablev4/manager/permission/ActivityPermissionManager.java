@@ -4,9 +4,10 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.pm.PackageManager;
+import android.text.TextUtils;
+
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
-import android.text.TextUtils;
 
 import com.sunrain.timetablev4.R;
 
@@ -47,7 +48,7 @@ class ActivityPermissionManager extends BasePermissionManager {
             for (String permission : permissions) {
                 if (ActivityCompat.shouldShowRequestPermissionRationale(mActivity, permission)) {
                     new AlertDialog.Builder(mActivity, android.R.style.Theme_Material_Light_Dialog_Alert).setMessage(message)
-                            .setCancelable(false).setPositiveButton(R.string.i_know, new DialogInterface.OnClickListener() {
+                            .setCancelable(false).setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
                             ActivityCompat.requestPermissions(mActivity, permissions, requestCode);
@@ -60,7 +61,7 @@ class ActivityPermissionManager extends BasePermissionManager {
 
         if (!TextUtils.isEmpty(hintMessage)) {
             new AlertDialog.Builder(mActivity, android.R.style.Theme_Material_Light_Dialog_Alert).setMessage(hintMessage)
-                    .setCancelable(false).setPositiveButton(R.string.i_know, new DialogInterface.OnClickListener() {
+                    .setCancelable(false).setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
                     ActivityCompat.requestPermissions(mActivity, permissions, requestCode);

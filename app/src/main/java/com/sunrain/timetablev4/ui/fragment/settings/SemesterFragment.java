@@ -8,7 +8,9 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
+
 import androidx.annotation.Nullable;
+
 import com.sunrain.timetablev4.R;
 import com.sunrain.timetablev4.base.BaseFragment;
 import com.sunrain.timetablev4.constants.SharedPreConstants;
@@ -18,12 +20,13 @@ import com.sunrain.timetablev4.ui.dialog.MessageDialog;
 import com.sunrain.timetablev4.utils.SharedPreUtils;
 import com.sunrain.timetablev4.view.UserSpinner;
 import com.sunrain.timetablev4.view.table.TableData;
-import tech.gujin.toast.ToastUtil;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
+
+import tech.gujin.toast.ToastUtil;
 
 public class SemesterFragment extends BaseFragment implements View.OnClickListener, UserSpinner.OnItemSelectedByUserListener {
 
@@ -72,7 +75,7 @@ public class SemesterFragment extends BaseFragment implements View.OnClickListen
         ArrayAdapter<Integer> weekAdapter = new ArrayAdapter<>(mActivity, R.layout.spinner_item, weeksArray);
         weekAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         mSpWeek.setAdapter(weekAdapter);
-        mWeek = SharedPreUtils.getInt(SharedPreConstants.SEMESTER_WEEK, SharedPreConstants.DEFAULT_SEMESTER_WEEK);
+        mWeek = SharedPreUtils.getInt(SharedPreConstants.DURATION_WEEK, SharedPreConstants.DEFAULT_SEMESTER_WEEK);
         mSpWeek.setSelection(mWeek - 1);
     }
 
@@ -107,7 +110,7 @@ public class SemesterFragment extends BaseFragment implements View.OnClickListen
                 break;
             case R.id.tv_end:
                 if (mStartDate == 0) {
-                    ToastUtil.show("Please set the start date first");
+                    ToastUtil.show(getResources().getString(R.string.plz_set_start_date_first));
                 } else {
                     showEndDatePickerDialog(mEndDate);
                 }
@@ -176,7 +179,7 @@ public class SemesterFragment extends BaseFragment implements View.OnClickListen
                 }
 
                 if (calendarDate < mStartDate) {
-                    ToastUtil.show("End date cannot be less than the start date");
+                    ToastUtil.show(getString(R.string.end_date_cant_less_than_start_date));
                     return;
                 }
 
@@ -187,7 +190,7 @@ public class SemesterFragment extends BaseFragment implements View.OnClickListen
                     TableData.getInstance().setContentChange();
                     dialog.dismiss();
                 } else {
-                    ToastUtil.show("The number of weeks exceeds 60, please reduce the end date");
+                    ToastUtil.show(getString(R.string.week_exceed_than_60));
                 }
             }
         });
@@ -230,7 +233,7 @@ public class SemesterFragment extends BaseFragment implements View.OnClickListen
     }
 
     private void saveWeek() {
-        SharedPreUtils.putInt(SharedPreConstants.SEMESTER_WEEK, mWeek);
+        SharedPreUtils.putInt(SharedPreConstants.DURATION_WEEK, mWeek);
         isWeekChanged = true;
     }
 
@@ -285,8 +288,8 @@ public class SemesterFragment extends BaseFragment implements View.OnClickListen
     }
 
     private void showOutOfWeekDialog(int week) {
-        new MessageDialog(mActivity).setMessage("The total number of weeks in the current semester is " + week + "week, there is a course that exceeds " + week + " weeks of class time, please pay attention to handling.")
-                .setPositiveButton("I know", new DialogInterface.OnClickListener() {
+        new MessageDialog(mActivity).setMessage(getString(R.string.total_number_of_weeks_in_current_sem) + week + "week, there is a course that exceeds " + week + " weeks of class time, please pay attention to handling.")
+                .setPositiveButton(getString(R.string.ok), new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         dialog.dismiss();

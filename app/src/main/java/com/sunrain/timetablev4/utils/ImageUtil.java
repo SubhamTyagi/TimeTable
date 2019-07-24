@@ -7,6 +7,7 @@ import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
 import android.media.MediaScannerConnection;
 import android.os.Environment;
+
 import androidx.core.content.ContextCompat;
 
 import com.sunrain.timetablev4.R;
@@ -24,7 +25,7 @@ public class ImageUtil {
         File file = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES), File.separator + "我是课程表");
         if (!file.exists()) {
             if (!file.mkdirs()) {
-                ToastUtil.show("Save failed");
+                ToastUtil.show(MyApplication.sContext.getResources().getString(R.string.save_failed));
                 return;
             }
         }
@@ -35,12 +36,12 @@ public class ImageUtil {
             bitmap.compress(Bitmap.CompressFormat.JPEG, 100, fileOutputStream);
             fileOutputStream.flush();
         } catch (IOException | IllegalStateException e) {
-            ToastUtil.show("Save failed");
+            ToastUtil.show(MyApplication.sContext.getResources().getString(R.string.save_failed));
             return;
         } finally {
             FileUtil.close(fileOutputStream);
         }
-        ToastUtil.show("Saved to" + filePic.getPath());
+        ToastUtil.show(MyApplication.sContext.getResources().getString(R.string.saved_to) + filePic.getPath());
         //通知相册刷新图片
         MediaScannerConnection.scanFile(MyApplication.sContext, new String[]{filePic.toString()}, null, null);
     }

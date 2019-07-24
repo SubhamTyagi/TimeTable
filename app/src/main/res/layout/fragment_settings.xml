@@ -16,7 +16,7 @@
         <RadioButton
             android:id="@+id/rb_semester"
             style="@style/radioButton_settings"
-            android:text="@string/semester"/>
+            android:text="@string/duration" />
 
         <RadioButton
             android:id="@+id/rb_table"

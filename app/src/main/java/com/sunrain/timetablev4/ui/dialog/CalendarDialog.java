@@ -2,11 +2,12 @@ package com.sunrain.timetablev4.ui.dialog;
 
 import android.content.Context;
 import android.content.DialogInterface;
-import androidx.annotation.NonNull;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CalendarView;
+
+import androidx.annotation.NonNull;
 
 import com.sunrain.timetablev4.R;
 import com.sunrain.timetablev4.base.BaseDialog;
@@ -52,7 +53,7 @@ public class CalendarDialog extends BaseDialog<CalendarDialog> implements Calend
 
     public long getDate() {
         if (mYear == 0) {
-            // 未选择
+
             return mCalendarView.getDate();
         }
         return new GregorianCalendar(mYear, mMonth, mDayOfMonth).getTimeInMillis();

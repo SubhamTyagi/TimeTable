@@ -2,13 +2,14 @@ package com.sunrain.timetablev4.adapter.course_management;
 
 import android.content.Context;
 import android.content.DialogInterface;
-import androidx.annotation.NonNull;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.TextView;
+
+import androidx.annotation.NonNull;
 
 import com.sunrain.timetablev4.R;
 import com.sunrain.timetablev4.base.BaseListAdapter;
@@ -73,7 +74,7 @@ public class ClassTimeAdapter extends BaseListAdapter<ClassBean, ClassTimeAdapte
         }
 
         ClassBean classBean = new ClassBean();
-        classBean._id = -1; // -1 代表新增
+        classBean._id = -1; // -1
         classBean.course = mCourseClassroomBean.course;
         classBean.classroom = mCourseClassroomBean.classroom;
         mClassTimeDialog.setClassBean(classBean);
@@ -96,7 +97,7 @@ public class ClassTimeAdapter extends BaseListAdapter<ClassBean, ClassTimeAdapte
             public void onClick(DialogInterface dialog, int which) {
                 dialog.dismiss();
             }
-        }).setPositiveButton("delete", new DialogInterface.OnClickListener() {
+        }).setPositiveButton(mContext.getResources().getString(R.string.delete), new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 dialog.dismiss();

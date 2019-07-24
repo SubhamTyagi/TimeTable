@@ -25,7 +25,7 @@
         android:background="?android:attr/selectableItemBackground"
         android:gravity="center_vertical"
         android:paddingStart="16dp"
-        android:text="edit"
+        android:text="@string/edit"
         android:textColor="@android:color/white"/>
 
     <TextView
@@ -36,7 +36,7 @@
         android:background="?android:attr/selectableItemBackground"
         android:gravity="center_vertical"
         android:paddingStart="16dp"
-        android:text="delete"
+        android:text="@string/delete"
         android:textColor="@android:color/white"/>
 
 </LinearLayout>

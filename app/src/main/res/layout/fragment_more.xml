@@ -14,14 +14,14 @@
             style="@style/SettingsButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Use tutorial"
+            android:text="@string/use_tutorial"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <Button
             android:id="@+id/btn_background"
             style="@style/SettingsButton"
-            android:text="Set background"
+            android:text="@string/set_background"
             app:layout_constraintLeft_toLeftOf="@+id/btn_donation"
             app:layout_constraintStart_toEndOf="@+id/btn_tutorial"
             app:layout_constraintTop_toTopOf="@+id/btn_tutorial" />
@@ -30,21 +30,21 @@
             android:id="@+id/btn_share_course"
             style="@style/SettingsButton"
             android:layout_marginTop="8dp"
-            android:text="Sharing schedule"
+            android:text="@string/sharing_schedule"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/btn_tutorial" />
 
         <Button
             android:id="@+id/btn_input_course"
             style="@style/SettingsButton"
-            android:text="Import class schedule"
+            android:text="@string/import_schedule"
             app:layout_constraintStart_toEndOf="@+id/btn_share_course"
             app:layout_constraintTop_toTopOf="@+id/btn_share_course" />
 
         <Button
             android:id="@+id/btn_clear_course"
             style="@style/SettingsButton"
-            android:text="Clear the schedule"
+            android:text="@string/clear_the_schedule"
             app:layout_constraintStart_toEndOf="@+id/btn_input_course"
             app:layout_constraintTop_toTopOf="@+id/btn_input_course" />
 
@@ -52,7 +52,7 @@
             android:id="@+id/btn_praise"
             style="@style/SettingsButton"
             android:layout_marginTop="8dp"
-            android:text="Give a good comment"
+            android:text="@string/rate_app"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/btn_share_course" />
 
@@ -66,7 +66,7 @@
         <Button
             android:id="@+id/btn_feedback"
             style="@style/SettingsButton"
-            android:text="Feedback"
+            android:text="@string/feedback"
             app:layout_constraintStart_toEndOf="@+id/btn_donation"
             app:layout_constraintTop_toTopOf="@+id/btn_donation" />
 
@@ -74,14 +74,14 @@
             android:id="@+id/btn_version"
             style="@style/SettingsButton"
             android:layout_marginTop="8dp"
-            android:text="Software version"
+            android:text="@string/app_version"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/btn_praise" />
 
         <Button
             android:id="@+id/btn_github"
             style="@style/SettingsButton"
-            android:text="Github"
+            android:text="@string/github_repo"
             android:textAllCaps="false"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintStart_toEndOf="@+id/btn_version"

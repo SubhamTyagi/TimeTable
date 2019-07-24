@@ -9,7 +9,9 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.RadioGroup;
+
 import androidx.annotation.NonNull;
+
 import com.sunrain.timetablev4.R;
 import com.sunrain.timetablev4.application.MyApplication;
 import com.sunrain.timetablev4.base.BaseDialog;
@@ -228,7 +230,7 @@ public class ClassTimeDialog extends BaseDialog<ClassTimeDialog> implements User
         mEveningClassAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
 
-        int week = SharedPreUtils.getInt(SharedPreConstants.SEMESTER_WEEK, SharedPreConstants.DEFAULT_SEMESTER_WEEK);
+        int week = SharedPreUtils.getInt(SharedPreConstants.DURATION_WEEK, SharedPreConstants.DEFAULT_SEMESTER_WEEK);
         Integer[] duringWeeks = new Integer[week];
         for (int i = 0; i < week; i++) {
             duringWeeks[i] = i + 1;

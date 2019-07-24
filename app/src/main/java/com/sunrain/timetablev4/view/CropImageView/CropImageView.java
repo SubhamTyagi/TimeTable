@@ -19,13 +19,14 @@ import android.os.Handler;
 import android.os.Looper;
 import android.os.Parcel;
 import android.os.Parcelable;
-import androidx.annotation.NonNull;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.animation.DecelerateInterpolator;
 import android.view.animation.Interpolator;
 import android.widget.ImageView;
+
+import androidx.annotation.NonNull;
 
 import com.sunrain.timetablev4.R;
 import com.sunrain.timetablev4.application.MyApplication;
@@ -40,7 +41,10 @@ import com.sunrain.timetablev4.view.CropImageView.callback.CropCallback;
 import com.sunrain.timetablev4.view.CropImageView.callback.LoadCallback;
 import com.sunrain.timetablev4.view.CropImageView.util.Utils;
 
-import java.io.*;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 

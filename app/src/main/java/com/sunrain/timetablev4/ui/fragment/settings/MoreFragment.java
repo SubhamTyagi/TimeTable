@@ -7,13 +7,14 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import android.text.TextUtils;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 import com.google.zxing.client.android.CaptureActivity;
 import com.sunrain.timetablev4.BuildConfig;
@@ -111,13 +112,13 @@ public class MoreFragment extends BaseFragment implements View.OnClickListener, 
                 ToastUtil.show(BuildConfig.VERSION_NAME);
                 break;
             case R.id.btn_github:
-                WebUtil.gotoWeb(mActivity, "https://github.com/GuJin/TimeTable");
+                WebUtil.gotoWeb(mActivity, getString(R.string.repo_url));
                 break;
             case R.id.btn_feedback:
                 showEmailDialog();
                 break;
             case R.id.btn_tutorial:
-                WebUtil.gotoWeb(mActivity, "http://timetable.gujin.tech/tutorial.html");
+                WebUtil.gotoWeb(mActivity, getString(R.string.tutorial_url));
                 break;
         }
     }
@@ -125,22 +126,22 @@ public class MoreFragment extends BaseFragment implements View.OnClickListener, 
     private void showEmailDialog() {
         String message = getString(R.string.dialog_feedback, BuildConfig.VERSION_NAME);
         MessageDialog messageDialog = new MessageDialog(mActivity).setMessage(message);
-        messageDialog.setPositiveButton("Copy email address", new DialogInterface.OnClickListener() {
+        messageDialog.setPositiveButton(getString(R.string.copy_email_address), new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 dialog.dismiss();
-                ClipboardUtil.writeToClipboard("mailbox", "itimetable@foxmail.com");
-                ToastUtil.show("Copied");
+                ClipboardUtil.writeToClipboard(getString(R.string.mailbox), getString(R.string.email_id));
+                ToastUtil.show(getString(R.string.copied));
             }
         });
 
         final Intent intent = new Intent(Intent.ACTION_SENDTO);
-        intent.setData(Uri.parse("mailto:itimetable@foxmail.com"));
-        intent.putExtra(Intent.EXTRA_SUBJECT, "I am a curriculum: suggestion feedback");
+        intent.setData(Uri.parse("mailto:" + getString(R.string.email_id)));
+        intent.putExtra(Intent.EXTRA_SUBJECT, getString(R.string.feedback_welcome));
         intent.putExtra(Intent.EXTRA_TEXT, getFeedBackInfo());
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         if (intent.resolveActivity(MyApplication.sContext.getPackageManager()) != null) {
-            messageDialog.setNegativeButton("Open the mail app", new DialogInterface.OnClickListener() {
+            messageDialog.setNegativeButton(getString(R.string.open_the_mail_app), new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
                     dialog.dismiss();
@@ -148,7 +149,7 @@ public class MoreFragment extends BaseFragment implements View.OnClickListener, 
                 }
             });
         } else {
-            messageDialog.setNegativeButton("shut down", new DialogInterface.OnClickListener() {
+            messageDialog.setNegativeButton(getString(R.string.cancel), new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
                     dialog.dismiss();
@@ -160,30 +161,30 @@ public class MoreFragment extends BaseFragment implements View.OnClickListener, 
     }
 
     private String getFeedBackInfo() {
-        return "version:" + BuildConfig.VERSION_NAME + "\n\n";
+        return getString(R.string.version_) + BuildConfig.VERSION_NAME + "\n\n";
     }
 
     private void showClearCourseDialog() {
-        new MessageDialog(mActivity).setMessage("Clear all course data?").setNegativeButton(new DialogInterface.OnClickListener() {
+        new MessageDialog(mActivity).setMessage(getString(R.string.clear_all_data)).setNegativeButton(new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 dialog.dismiss();
             }
-        }).setPositiveButton("Empty", new DialogInterface.OnClickListener() {
+        }).setPositiveButton(getString(R.string.empty), new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 dialog.dismiss();
                 TableDao.clearInBackground();
                 CourseClassroomDao.clearInBackground();
                 TableData.getInstance().setContentChange();
-                ToastUtil.show("Cleared");
+                ToastUtil.show(getString(R.string.cleard));
             }
         }).show();
     }
 
     private void checkTableDataValid() {
         if (TableDao.isDataBaseEmpty()) {
-            ToastUtil.show("Empty class schedule");
+            ToastUtil.show(getString(R.string.empty_class_schedule));
             return;
         }
         new ShareClassDialog(mActivity).show();
@@ -207,7 +208,7 @@ public class MoreFragment extends BaseFragment implements View.OnClickListener, 
         if (intent.resolveActivity(mActivity.getPackageManager()) != null) {
             startActivity(intent);
         } else {
-            ToastUtil.show("Jump application market failed");
+            ToastUtil.show(getString(R.string.market_load_failed));
         }
     }
 
@@ -239,7 +240,7 @@ public class MoreFragment extends BaseFragment implements View.OnClickListener, 
     }
 
     public void importCourseFinished() {
-        ToastUtil.show("Successfully imported");
+        ToastUtil.show(getString(R.string.successfully_import));
         TableData.getInstance().setContentChange();
     }
 
@@ -254,7 +255,7 @@ public class MoreFragment extends BaseFragment implements View.OnClickListener, 
         } else if (requestCode == REQUEST_INPUT_COURSE && resultCode == Activity.RESULT_OK) {
             String result = data.getStringExtra("result");
             if (TextUtils.isEmpty(result)) {
-                ToastUtil.show("Import failed");
+                ToastUtil.show(getString(R.string.import_failed));
                 return;
             }
             new InputCourseAnalysisThread(this, result).start();
@@ -267,11 +268,11 @@ public class MoreFragment extends BaseFragment implements View.OnClickListener, 
             public void onClick(DialogInterface dialog, int which) {
                 dialog.dismiss();
             }
-        }).setPositiveButton("Import", new DialogInterface.OnClickListener() {
+        }).setPositiveButton(getString(R.string.import_), new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 dialog.dismiss();
-                ToastUtil.show("Importing");
+                ToastUtil.show(getString(R.string.importing));
                 new InputCourseSaveThread(MoreFragment.this, list).start();
             }
         }).show();
@@ -292,10 +293,10 @@ public class MoreFragment extends BaseFragment implements View.OnClickListener, 
     public boolean onLongClick(View v) {
         switch (v.getId()) {
             case R.id.btn_donation:
-                ToastUtil.show("I like your message in the transfer note more than the amount.", true);
+                ToastUtil.show(getString(R.string.msg_1), true);
                 return true;
             case R.id.btn_feedback:
-                ToastUtil.show("I am very happy to see someone sending an email.");
+                ToastUtil.show(getString(R.string.msg_2));
                 return true;
         }
         return false;

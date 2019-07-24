@@ -85,21 +85,21 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Single and double weeks" />
+            android:text="@string/alternate_week" />
 
         <RadioButton
             android:id="@+id/rb_double_week_odd"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="One week" />
+            android:text="@string/one_week" />
 
         <RadioButton
             android:id="@+id/rb_double_week_double"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Biweekly" />
+            android:text="@string/two_week" />
     </RadioGroup>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -63,7 +63,7 @@ class DayAppWidgetRemoteViewsFactory implements RemoteViewsService.RemoteViewsFa
         int currentWeek = CalendarUtil.getCurrentWeek(currentTime);
         SparseArray<ClassBean> classesInDay;
 
-        boolean isDoubleWeekEnabled = SharedPreUtils.getInt(SharedPreConstants.DOUBLE_WEEK, SharedPreConstants.DEFAULT_DOUBLE_WEEK) == 1;
+        boolean isDoubleWeekEnabled = SharedPreUtils.getInt(SharedPreConstants.ALTERNATE_WEEK, SharedPreConstants.DEFAULT_DOUBLE_WEEK) == 1;
         if (isDoubleWeekEnabled) {
             classesInDay = TableDao.getClassesInDay(currentWeek, mDayOfWeek, CalendarUtil.isDoubleWeek(currentWeek));
         } else {
@@ -96,16 +96,16 @@ class DayAppWidgetRemoteViewsFactory implements RemoteViewsService.RemoteViewsFa
         int time;
         String sectionTime;
         if (position < mMorningClasses) {
-            // 上午
+
             sectionTime = ClassBean.Format.getFormatTimeInDay(0, position, mAppWidgetTimeStyle);
             key += position;
         } else if (position < mMorningClasses + mAfternoonClasses) {
-            // 下午
+
             time = position - mMorningClasses;
             sectionTime = ClassBean.Format.getFormatTimeInDay(1, time, mAppWidgetTimeStyle);
             key += (10 + time);
         } else {
-            // 晚上
+
             time = position - mMorningClasses - mAfternoonClasses;
             sectionTime = ClassBean.Format.getFormatTimeInDay(2, time, mAppWidgetTimeStyle);
             key += (20 + time);

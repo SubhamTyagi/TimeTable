@@ -2,50 +2,50 @@
 <resources>
     <string-array name="week">
         <item>Monday</item>
-        <item>Tuesday </item>
-        <item> Wednesday </item>
-        <item>Thursday </item>
+        <item>Tuesday</item>
+        <item>Wednesday</item>
+        <item>Thursday</item>
         <item>Friday</item>
-        <item>Saturday </item>
+        <item>Saturday</item>
         <item>Sunday</item>
     </string-array>
 
     <string-array name="section">
-        <item>am </item>
-        <item> afternoon </item>
-        <item>night</item>
+        <item>Morning</item>
+        <item>Afternoon</item>
+        <item>Evening</item>
     </string-array>
 
     <string-array name="section_simple">
-        <item> on </item>
-        <item> under </item>
-        <item>night</item>
+        <item>on</item>
+        <item>under</item>
+        <item>evening</item>
     </string-array>
 
     <string-array name="time">
-        <item> first section </item>
-        <item> second quarter </item>
-        <item> third quarter </item>
-        <item> fourth quarter </item>
-        <item> fifth quarter </item>
-        <item> Section 6 </item>
-        <item> seventh section </item>
-        <item> eighth quarter </item>
-        <item> ninth section </item>
-        <item>10th </item>
+        <item>first part</item>
+        <item>second part</item>
+        <item>third part</item>
+        <item>fourth part</item>
+        <item>fifth part</item>
+        <item>sixth part</item>
+        <item>seventh part</item>
+        <item>eighth part</item>
+        <item>ninth part</item>
+        <item>tenth part</item>
     </string-array>
 
     <string-array name="time_simple">
-        <item> one</item>
-        <item> two </item>
-        <item> three </item>
-        <item> four </item>
-        <item> five </item>
-        <item> six </item>
-        <item> seven</item>
+        <item>one</item>
+        <item>two</item>
+        <item>three</item>
+        <item>four</item>
+        <item>five</item>
+        <item>six</item>
+        <item>seven</item>
         <item>eight</item>
-        <item> nine </item>
-        <item> ten </item>
+        <item>nine</item>
+        <item>ten</item>
     </string-array>
 
     <string-array name="time_number">
