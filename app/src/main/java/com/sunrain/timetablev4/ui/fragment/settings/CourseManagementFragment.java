@@ -138,7 +138,7 @@ public class CourseManagementFragment extends BaseFragment implements ViewTreeOb
         String classroom = mEtClassroom.getText().toString();
 
         if (TextUtils.isEmpty(course)) {
-            ToastUtil.show(getResources().getString(R.string.course_name_cant_empty));
+            ToastUtil.show(getResources().getString(R.string.subject_name_cant_empty));
             return;
         }
 
@@ -264,7 +264,7 @@ public class CourseManagementFragment extends BaseFragment implements ViewTreeOb
                 final String classroom = editDialog.getClassroom();
 
                 if (TextUtils.isEmpty(course)) {
-                    ToastUtil.show(getResources().getString(R.string.course_cant_empty));
+                    ToastUtil.show(getResources().getString(R.string.subject_name_cant_empty));
                     return;
                 }
 
@@ -302,7 +302,7 @@ public class CourseManagementFragment extends BaseFragment implements ViewTreeOb
     }
 
     private void showDeleteCourseClassroomDialog(final CourseClassroomBean bean) {
-        new MessageDialog(mActivity).setMessage(getString(R.string.delete) + bean.course + " " + bean.classroom + getResources().getString(R.string.courses))
+        new MessageDialog(mActivity).setMessage(getString(R.string.delete) + bean.course + " " + bean.classroom + getResources().getString(R.string.subject_q))
                 .setNegativeButton(new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {

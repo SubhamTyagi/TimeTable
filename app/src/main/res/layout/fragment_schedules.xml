@@ -8,7 +8,7 @@
         android:id="@+id/tv_morning"
         style="@style/SettingsItem.LargeText"
         android:layout_marginTop="0dp"
-        android:text="@string/course_morning"
+        android:text="@string/morning_subject"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toTopOf="parent"/>
 
@@ -22,7 +22,7 @@
     <TextView
         android:id="@+id/tv_afternoon"
         style="@style/SettingsItem.LargeText"
-        android:text="@string/afternoon_course"
+        android:text="@string/afternoon_subject"
         android:textColor="@android:color/white"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_morning"/>
@@ -37,7 +37,7 @@
     <TextView
         android:id="@+id/tv_evening"
         style="@style/SettingsItem.LargeText"
-        android:text="@string/course_evening"
+        android:text="@string/evening_subject"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_afternoon"/>
 
@@ -51,10 +51,12 @@
     <TextView
         android:id="@+id/tv_double_week"
         style="@style/SettingsItem.LargeText"
+        android:layout_marginStart="8dp"
         android:text="@string/alternate_week"
         app:layout_constraintBaseline_toBaselineOf="@+id/tv_morning"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"/>
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/sp_morning" />
 
     <Switch
         android:id="@+id/sw_double_week"
@@ -66,10 +68,12 @@
     <TextView
         android:id="@+id/tv_workday"
         style="@style/SettingsItem.LargeText"
+        android:layout_marginStart="8dp"
         android:text="@string/work_day"
         app:layout_constraintBaseline_toBaselineOf="@+id/tv_afternoon"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"/>
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/sp_afternoon" />
 
     <CheckBox
         android:id="@+id/cb_workday"

@@ -26,7 +26,7 @@
         <RadioButton
             android:id="@+id/rb_course_management"
             style="@style/radioButton_settings"
-            android:text="@string/settings_course"/>
+            android:text="@string/settings_subject"/>
 
         <RadioButton
             android:id="@+id/rb_more"
@@ -37,7 +37,7 @@
     <View
         android:layout_width="0.4dp"
         android:layout_height="match_parent"
-        android:layout_marginStart="50dp"
+        android:layout_marginStart="65dp"
         android:background="@color/white_press"/>
 
     <FrameLayout

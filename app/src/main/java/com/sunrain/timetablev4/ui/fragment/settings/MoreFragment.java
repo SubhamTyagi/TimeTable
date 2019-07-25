@@ -170,7 +170,7 @@ public class MoreFragment extends BaseFragment implements View.OnClickListener, 
             public void onClick(DialogInterface dialog, int which) {
                 dialog.dismiss();
             }
-        }).setPositiveButton(getString(R.string.empty), new DialogInterface.OnClickListener() {
+        }).setPositiveButton(getString(R.string.clear), new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 dialog.dismiss();
@@ -184,7 +184,7 @@ public class MoreFragment extends BaseFragment implements View.OnClickListener, 
 
     private void checkTableDataValid() {
         if (TableDao.isDataBaseEmpty()) {
-            ToastUtil.show(getString(R.string.empty_class_schedule));
+            ToastUtil.show(getString(R.string.clear_class_schedule));
             return;
         }
         new ShareClassDialog(mActivity).show();

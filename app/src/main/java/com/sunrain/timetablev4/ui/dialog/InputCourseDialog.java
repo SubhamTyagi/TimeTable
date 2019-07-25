@@ -21,7 +21,7 @@ public class InputCourseDialog extends BaseDialog<InputCourseDialog> {
         super(context);
 
         StringBuilder sb = new StringBuilder();
-        sb.append(getContext().getResources().getString(R.string.will_the_currentcourse_emptied));
+        sb.append(getContext().getResources().getString(R.string.can_the_current_sublect_cleared));
 
         for (ClassBean classBean : list) {
             sb.append("\n\n");

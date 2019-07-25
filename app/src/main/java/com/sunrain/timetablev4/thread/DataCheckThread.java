@@ -50,7 +50,7 @@ public class DataCheckThread extends Thread {
         if ((mLastVersionCode == 23 || mLastVersionCode == 24) && SharedPreUtils.getInt(SharedPreConstants.ALTERNATE_WEEK,
                 SharedPreConstants.DEFAULT_DOUBLE_WEEK) == 1) {
             if (mainActivity == null) {
-                ToastUtil.postShow(MyApplication.sContext.getResources().getString(R.string.plz_check_one_week_course_config), true);
+                ToastUtil.postShow(MyApplication.sContext.getResources().getString(R.string.plz_check_one_week_subject_config), true);
                 return;
             }
 
@@ -85,7 +85,7 @@ public class DataCheckThread extends Thread {
 
         if (TableDao.existsOutOfWeek(week - 1)) {
             if (mainActivity == null) {
-                ToastUtil.postShow(mainActivity.getResources().getString(R.string.more_than_total_week) + week + mainActivity.getResources().getString(R.string.weekly_course), true);
+                ToastUtil.postShow(mainActivity.getResources().getString(R.string.more_than_total_week) + week + mainActivity.getResources().getString(R.string.weekly_subject), true);
                 return;
             }
 
@@ -100,19 +100,19 @@ public class DataCheckThread extends Thread {
 
         // Course inspection
         if (CourseClassroomDao.isDataBaseEmpty()) {
-            ToastUtil.postShow(mainActivity.getResources().getString(R.string.plz_add_course), true);
+            ToastUtil.postShow(mainActivity.getResources().getString(R.string.plz_add_subject), true);
             return;
         }
 
         if (TableDao.isDataBaseEmpty()) {
-            ToastUtil.postShow(mainActivity.getResources().getString(R.string.plz_add_class_time_course), true);
+            ToastUtil.postShow(mainActivity.getResources().getString(R.string.plz_add_class_time_subject), true);
 
             return;
         }
 
         if (SharedPreUtils.getInt(SharedPreConstants.ALTERNATE_WEEK, SharedPreConstants.DEFAULT_DOUBLE_WEEK) == 0 && TableDao
                 .existsDoubleWeek()) {
-            ToastUtil.postShow(mainActivity.getResources().getString(R.string.alternate_week_courese_available), true);
+            ToastUtil.postShow(mainActivity.getResources().getString(R.string.alternate_week_subject_available), true);
         }
     }
 
@@ -140,7 +140,7 @@ public class DataCheckThread extends Thread {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         dialog.dismiss();
-                        WebUtil.gotoWeb(mainActivity, mainActivity.getResources().getString(R.string.website_url));
+                        WebUtil.gotoWeb(mainActivity, mainActivity.getResources().getString(R.string.tutorial_url));
                     }
                 })
                 .show();

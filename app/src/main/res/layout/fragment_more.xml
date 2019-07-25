@@ -1,5 +1,6 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginBottom="60dp">
@@ -10,82 +11,99 @@
         android:orientation="vertical">
 
         <Button
-            android:id="@+id/btn_tutorial"
-            style="@style/SettingsButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/use_tutorial"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <Button
             android:id="@+id/btn_background"
             style="@style/SettingsButton"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
             android:text="@string/set_background"
-            app:layout_constraintLeft_toLeftOf="@+id/btn_donation"
-            app:layout_constraintStart_toEndOf="@+id/btn_tutorial"
-            app:layout_constraintTop_toTopOf="@+id/btn_tutorial" />
+
+            app:layout_constraintStart_toStartOf="parent"
+
+            app:layout_constraintTop_toTopOf="parent" />
 
         <Button
             android:id="@+id/btn_share_course"
             style="@style/SettingsButton"
-            android:layout_marginTop="8dp"
+            android:layout_marginStart="60dp"
+            android:layout_marginEnd="60dp"
             android:text="@string/sharing_schedule"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/btn_tutorial" />
+            app:layout_constraintBaseline_toBaselineOf="@+id/btn_background"
+            app:layout_constraintDimensionRatio="1:1"
+            app:layout_constraintEnd_toStartOf="@+id/btn_input_course"
+            app:layout_constraintStart_toEndOf="@+id/btn_background" />
 
         <Button
             android:id="@+id/btn_input_course"
             style="@style/SettingsButton"
+            android:layout_marginEnd="20dp"
             android:text="@string/import_schedule"
-            app:layout_constraintStart_toEndOf="@+id/btn_share_course"
-            app:layout_constraintTop_toTopOf="@+id/btn_share_course" />
+            app:layout_constraintBaseline_toBaselineOf="@+id/btn_share_course"
+            app:layout_constraintEnd_toEndOf="parent" />
 
         <Button
             android:id="@+id/btn_clear_course"
             style="@style/SettingsButton"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="48dp"
             android:text="@string/clear_the_schedule"
-            app:layout_constraintStart_toEndOf="@+id/btn_input_course"
-            app:layout_constraintTop_toTopOf="@+id/btn_input_course" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/btn_background" />
 
         <Button
             android:id="@+id/btn_praise"
             style="@style/SettingsButton"
-            android:layout_marginTop="8dp"
+            android:layout_marginStart="10dp"
             android:text="@string/rate_app"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/btn_share_course" />
+            app:layout_constraintBaseline_toBaselineOf="@+id/btn_clear_course"
+            app:layout_constraintStart_toEndOf="@+id/btn_clear_course" />
 
         <Button
             android:id="@+id/btn_donation"
             style="@style/SettingsButton"
+            android:layout_marginEnd="40dp"
             android:text="@string/donation"
-            app:layout_constraintStart_toEndOf="@+id/btn_praise"
-            app:layout_constraintTop_toTopOf="@+id/btn_praise" />
+            app:layout_constraintBaseline_toBaselineOf="@+id/btn_praise"
+            app:layout_constraintEnd_toStartOf="@+id/btn_feedback" />
 
         <Button
             android:id="@+id/btn_feedback"
             style="@style/SettingsButton"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="20dp"
             android:text="@string/feedback"
-            app:layout_constraintStart_toEndOf="@+id/btn_donation"
-            app:layout_constraintTop_toTopOf="@+id/btn_donation" />
+            app:layout_constraintBaseline_toBaselineOf="@+id/btn_donation"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <Button
+            android:id="@+id/btn_tutorial"
+            style="@style/SettingsButton"
+            android:layout_width="114dp"
+            android:layout_height="48dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="48dp"
+            android:layout_marginBottom="10dp"
+            android:text="@string/use_tutorial"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/btn_clear_course" />
 
         <Button
             android:id="@+id/btn_version"
             style="@style/SettingsButton"
-            android:layout_marginTop="8dp"
+            android:layout_marginStart="60dp"
+            android:layout_marginEnd="60dp"
             android:text="@string/app_version"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/btn_praise" />
+            app:layout_constraintBaseline_toBaselineOf="@+id/btn_tutorial"
+            app:layout_constraintEnd_toStartOf="@+id/btn_github"
+            app:layout_constraintStart_toEndOf="@+id/btn_tutorial" />
 
         <Button
             android:id="@+id/btn_github"
             style="@style/SettingsButton"
+            android:layout_marginEnd="20dp"
             android:text="@string/github_repo"
-            android:textAllCaps="false"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/btn_version"
-            app:layout_constraintTop_toTopOf="@+id/btn_version" />
+            app:layout_constraintBaseline_toBaselineOf="@+id/btn_version"
+            app:layout_constraintEnd_toEndOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

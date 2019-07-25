@@ -17,48 +17,48 @@
     </string-array>
 
     <string-array name="section_simple">
-        <item>on</item>
-        <item>under</item>
-        <item>evening</item>
+        <item>Morning</item>
+        <item>Afternoon</item>
+        <item>Evening</item>
     </string-array>
 
     <string-array name="time">
-        <item>first part</item>
-        <item>second part</item>
-        <item>third part</item>
-        <item>fourth part</item>
-        <item>fifth part</item>
-        <item>sixth part</item>
-        <item>seventh part</item>
-        <item>eighth part</item>
-        <item>ninth part</item>
-        <item>tenth part</item>
+        <item>First part:</item>
+        <item>Second part:</item>
+        <item>Third part:</item>
+        <item>Fourth part:</item>
+        <item>Fifth part:</item>
+        <item>Sixth part:</item>
+        <item>Seventh part:</item>
+        <item>Eighth part:</item>
+        <item>Ninth part:</item>
+        <item>Tenth part:</item>
     </string-array>
 
     <string-array name="time_simple">
-        <item>one</item>
-        <item>two</item>
-        <item>three</item>
-        <item>four</item>
-        <item>five</item>
-        <item>six</item>
-        <item>seven</item>
-        <item>eight</item>
-        <item>nine</item>
-        <item>ten</item>
+        <item>First:</item>
+        <item>Second:</item>
+        <item>Third:</item>
+        <item>Fourth:</item>
+        <item>Fifth:</item>
+        <item>Sixth:</item>
+        <item>Seventh:</item>
+        <item>Eighth:</item>
+        <item>Nineth:</item>
+        <item>Tenth:</item>
     </string-array>
 
     <string-array name="time_number">
-        <item>1</item>
-        <item>2</item>
-        <item>3</item>
-        <item>4</item>
-        <item>5</item>
-        <item>6</item>
-        <item>7</item>
-        <item>8</item>
-        <item>9</item>
-        <item>10</item>
+        <item>1:</item>
+        <item>2:</item>
+        <item>3:</item>
+        <item>4:</item>
+        <item>5:</item>
+        <item>6:</item>
+        <item>7:</item>
+        <item>8:</item>
+        <item>9:</item>
+        <item>10:</item>
     </string-array>
 
 </resources>

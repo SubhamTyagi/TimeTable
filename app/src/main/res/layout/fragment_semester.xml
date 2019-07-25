@@ -40,10 +40,11 @@
         android:id="@+id/tv_semester_week"
         style="@style/SettingsItem.LargeText"
         android:layout_alignBottom="@id/tv_start_hint"
+        android:layout_marginStart="8dp"
         android:text="@string/semester_week"
         app:layout_constraintBaseline_toBaselineOf="@+id/tv_start_hint"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"/>
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/tv_start" />
 
     <com.sunrain.timetablev4.view.UserSpinner
         android:id="@+id/sp_week"

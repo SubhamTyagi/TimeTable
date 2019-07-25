@@ -33,7 +33,7 @@ public class TableFragment extends BaseFragment implements CompoundButton.OnChec
 
     @Override
     public View createView(LayoutInflater inflater, ViewGroup container) {
-        return inflater.inflate(R.layout.fragment_table, container, false);
+        return inflater.inflate(R.layout.fragment_schedules, container, false);
     }
 
     @Override

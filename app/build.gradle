@@ -1,6 +1,5 @@
 apply plugin: 'com.android.application'
-//////apply from: '../properties-util.gradle'
-/////apply plugin: 'walle'
+
 
 android {
     compileSdkVersion 28
@@ -16,16 +15,7 @@ android {
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
-    /*signingConfigs {
-        if (propertyHaveSigningConfigs) {
-            release {
-                storeFile file(propertyStoreFile)
-                storePassword propertyStorePassword
-                keyAlias propertyKeyAlias
-                keyPassword propertyKeyPassword
-            }
-        }
-    }*/
+
 
     buildTypes {
         debug {
@@ -34,9 +24,7 @@ android {
             versionNameSuffix "-debug"
             minifyEnabled false
             shrinkResources false
-          //  if (propertyHaveSigningConfigs) {
-          //      signingConfig signingConfigs.release
-          //  }
+
         }
         release {
             debuggable false
@@ -45,13 +33,13 @@ android {
             zipAlignEnabled true
             shrinkResources true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-           // if (propertyHaveSigningConfigs) {
-           //     signingConfig signingConfigs.release
-           // }
-        }
+                    }
     }
 
-
+    lintOptions {
+        checkReleaseBuilds false
+        abortOnError false
+    }
 }
 
 dependencies {
@@ -62,7 +50,7 @@ dependencies {
     })
     implementation 'tech.gujin:toast-util:1.1.1'
     implementation 'com.google.zxing:core:3.3.3'
-   
+
     //implementation 'com.meituan.android.walle:library:1.1.6'
     implementation 'androidx.exifinterface:exifinterface:1.0.0'
     implementation 'androidx.core:core:1.0.1'
@@ -74,11 +62,4 @@ dependencies {
     debugImplementation 'com.squareup.leakcanary:leakcanary-android:1.5.4'
     releaseImplementation 'com.squareup.leakcanary:leakcanary-android-no-op:1.5.4'
 }
-/*
 
-walle {
-    apkOutputFolder = new File("${project.buildDir}/outputs/apk/release/channels")
-    apkFileNameFormat = 'timetable_${versionName}_${channel}.apk'
-    channelFile = new File("${project.getProjectDir()}/channel")
-}
-*/

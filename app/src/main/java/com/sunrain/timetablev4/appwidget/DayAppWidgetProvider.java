@@ -44,7 +44,7 @@ public class DayAppWidgetProvider extends AppWidgetProvider {
             registerNewDayBroadcast();
         }
 
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("MDE", Locale.getDefault());
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("d M E", Locale.getDefault());
 
         for (int appWidgetId : appWidgetIds) {
             Intent intent = new Intent(context, DayAppWidgetService.class);
@@ -88,7 +88,7 @@ public class DayAppWidgetProvider extends AppWidgetProvider {
         for (int appWidgetId : appWidgetIds) {
 
             RemoteViews views = new RemoteViews(MyApplication.sContext.getPackageName(), R.layout.day_appwidget);
-            views.setTextViewText(R.id.tv_date, getDateText(appWidgetId, System.currentTimeMillis(), new SimpleDateFormat("M月d日 E", Locale.getDefault())));
+            views.setTextViewText(R.id.tv_date, getDateText(appWidgetId, System.currentTimeMillis(), new SimpleDateFormat("D M E", Locale.getDefault())));
             appWidgetManager.partiallyUpdateAppWidget(appWidgetId, views);
         }
     }
@@ -130,7 +130,7 @@ public class DayAppWidgetProvider extends AppWidgetProvider {
         views.setRemoteAdapter(R.id.lv_day_appwidget, intent);
         views.setEmptyView(R.id.lv_day_appwidget, R.id.empty_view);
         views.setInt(R.id.fl_root, "setBackgroundColor", backgroundColor);
-        views.setTextViewText(R.id.tv_date, getDateText(appWidgetId, System.currentTimeMillis(), new SimpleDateFormat("M月d日 E", Locale.getDefault())));
+        views.setTextViewText(R.id.tv_date, getDateText(appWidgetId, System.currentTimeMillis(), new SimpleDateFormat("d M E", Locale.getDefault())));
         appWidgetManager.partiallyUpdateAppWidget(appWidgetId, views);
     }
 
@@ -147,7 +147,7 @@ public class DayAppWidgetProvider extends AppWidgetProvider {
         if (ACTION_RESTORE.equals(action) || ACTION_YESTERDAY.equals(action) || ACTION_TOMORROW.equals(action)) {
 
             //TODO: date format
-            SimpleDateFormat simpleDateFormat = new SimpleDateFormat("M d  E", Locale.getDefault());
+            SimpleDateFormat simpleDateFormat = new SimpleDateFormat("d M E", Locale.getDefault());
             AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(context);
             RemoteViews rv = new RemoteViews(context.getPackageName(), R.layout.day_appwidget);
             int appWidgetId = intent.getIntExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, AppWidgetManager

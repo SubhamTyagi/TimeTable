@@ -10,7 +10,7 @@
         android:id="@+id/et_course"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="@string/course"
+        android:hint="@string/subject"
         android:imeOptions="flagNoFullscreen|flagNoExtractUi|actionDone"
         android:inputType="text"
         android:textSize="14sp"/>

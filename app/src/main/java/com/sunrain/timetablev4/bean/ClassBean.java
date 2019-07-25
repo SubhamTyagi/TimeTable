@@ -96,11 +96,11 @@ public class ClassBean {
             sSb.append(sWeekArray[classBean.week]).append(" ");
             sSb.append(sSectionArray[classBean.section]).append(" ");
             sSb.append(sTimeArray[classBean.time]).append("\n");
-            sSb.append(classBean.startWeek + 1).append(" ~ ").append(classBean.endWeek + 1).append(" 周");
+            sSb.append(classBean.startWeek + 1).append(" ~ ").append(classBean.endWeek + 1).append(" "+MyApplication.sContext.getResources().getString(R.string.week));
             if (classBean.doubleWeek == 1) {
-                sSb.append(" ").append("Biweekly");
+                sSb.append(" ").append(MyApplication.sContext.getResources().getString(R.string.biweekly));
             } else if (classBean.doubleWeek == 2) {
-                sSb.append(" ").append("One week");
+                sSb.append(" ").append(MyApplication.sContext.getResources().getString(R.string.one_week));
             }
             return sSb.toString();
         }
@@ -110,11 +110,11 @@ public class ClassBean {
             sSb.append(sWeekArray[classBean.week]).append(" ");
             sSb.append(sSectionArray[classBean.section]).append(" ");
             sSb.append(sTimeArray[classBean.time]).append("\n");
-            sSb.append(classBean.startWeek + 1).append(" ~ ").append(classBean.endWeek + 1).append(" 周");
+            sSb.append(classBean.startWeek + 1).append(" ~ ").append(classBean.endWeek + 1).append(" "+MyApplication.sContext.getResources().getString(R.string.week));
             if (classBean.doubleWeek == 1) {
-                sSb.append(" ").append("Biweekly");
+                sSb.append(" ").append(MyApplication.sContext.getResources().getString(R.string.biweekly));
             } else if (classBean.doubleWeek == 2) {
-                sSb.append(" ").append("One week");
+                sSb.append(" ").append(MyApplication.sContext.getResources().getString(R.string.one_week));
             }
             return sSb.toString();
         }
@@ -167,11 +167,11 @@ public class ClassBean {
             sSb.setLength(0);
             sSb.append(classBean.course).append("\n");
             sSb.append(classBean.classroom).append("\n");
-            sSb.append(classBean.startWeek + 1).append(" ~ ").append(classBean.endWeek + 1).append(" 周");
+            sSb.append(classBean.startWeek + 1).append(" ~ ").append(classBean.endWeek + 1).append(" "+MyApplication.sContext.getResources().getString(R.string.week));
             if (classBean.doubleWeek == 1) {
-                sSb.append(" ").append("Biweekly");
+                sSb.append(" ").append(MyApplication.sContext.getResources().getString(R.string.biweekly));
             } else if (classBean.doubleWeek == 2) {
-                sSb.append(" ").append("One week");
+                sSb.append(" ").append(MyApplication.sContext.getResources().getString(R.string.one_week));
             }
             return sSb.toString();
         }
