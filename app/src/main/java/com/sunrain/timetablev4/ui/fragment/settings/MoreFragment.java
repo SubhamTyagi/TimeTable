@@ -29,7 +29,6 @@ import com.sunrain.timetablev4.manager.permission.PermissionManager;
 import com.sunrain.timetablev4.thread.input_course.InputCourseAnalysisThread;
 import com.sunrain.timetablev4.thread.input_course.InputCourseSaveThread;
 import com.sunrain.timetablev4.ui.activity.CropActivity;
-import com.sunrain.timetablev4.ui.dialog.DonationDialog;
 import com.sunrain.timetablev4.ui.dialog.InputCourseDialog;
 import com.sunrain.timetablev4.ui.dialog.MessageDialog;
 import com.sunrain.timetablev4.ui.dialog.ShareClassDialog;
@@ -213,7 +212,7 @@ public class MoreFragment extends BaseFragment implements View.OnClickListener, 
     }
 
     private void showDonationDialog() {
-        new DonationDialog(mActivity).show();
+       // new DonationDialog(mActivity).show();
     }
 
     @Override

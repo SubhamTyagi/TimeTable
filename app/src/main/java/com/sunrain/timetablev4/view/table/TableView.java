@@ -55,6 +55,7 @@ public class TableView extends View {
     private int mMorningClasses = 2;
     private int mAfternoonClasses = 2;
     private int mEveningClasses = 1;
+
     private int mTotalClasses;
     private String[] mWeekArray;
     private int mTextBaseline;
@@ -65,6 +66,7 @@ public class TableView extends View {
     private int mEveningHeight;
     private int mRangeHeight;
     private int mScrollRange;
+
     private TableData mTableData;
     private OnBoxClickListener mOnBoxClickListener;
     private OnBoxLongClickListener mOnBoxLongClickListener;
@@ -104,7 +106,6 @@ public class TableView extends View {
 
         initConfig();
 
-        // 如果之前设置了很多课程，并滚动到底部，再设置为极少量课程，会导致课表无法显示，需要主动滚动到头部
         if (mMorningClasses + mAfternoonClasses + mEveningClasses < oldClassesCount) {
             scrollTo(0, 0);
         }
@@ -172,16 +173,14 @@ public class TableView extends View {
         drawClasses(canvas);
     }
 
-    /**
-     * 绘制课程文字
-     */
+
     private void drawClasses(Canvas canvas) {
         SparseArray<ClassBean> classes = mTableData.getClasses();
         for (int i = 0; i < classes.size(); i++) {
             int key = classes.keyAt(i);
             ClassBean classBean = classes.get(key);
 
-            int x, y; // 所在格子的中心点
+            int x, y;
 
             x = TIME_BOX_WIDTH + mClassBoxWidth * classBean.week + mClassBoxWidth / 2;
             y = WEEK_BOX_HEIGHT + mClassBoxHeight * classBean.time + mClassBoxHeight / 2;

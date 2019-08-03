@@ -4,8 +4,6 @@ import android.annotation.SuppressLint;
 import android.app.Application;
 import android.content.Context;
 
-import com.squareup.leakcanary.LeakCanary;
-
 import tech.gujin.toast.ToastUtil;
 
 public class MyApplication extends Application {
@@ -18,8 +16,8 @@ public class MyApplication extends Application {
         super.onCreate();
         sContext = getApplicationContext();
         ToastUtil.initialize(sContext, ToastUtil.Mode.REPLACEABLE);
-        if (!LeakCanary.isInAnalyzerProcess(this)) {
+       /* if (!LeakCanary.isInAnalyzerProcess(this)) {
             LeakCanary.install(this);
-        }
+        }*/
     }
 }
