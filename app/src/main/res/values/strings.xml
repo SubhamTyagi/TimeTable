@@ -13,8 +13,8 @@
     <string name="week_work_day">Monday~Friday</string>
 
     <string name="duration">Duration</string>
-    <string name="table">Schedules</string>
-    <string name="settings_subject">Agendas</string>
+    <string name="table">Table</string>
+    <string name="settings_subject">Subjects</string>
     <string name="more">More…</string>
 
     <string name="donation">Donate</string>
@@ -22,7 +22,7 @@
     <string name="confirm">Confirm</string>
     <string name="cancel">Cancel</string>
 
-    <string name="subject">Agenda/Schedule</string>
+    <string name="subject">Schedule/Subject</string>
 
     <string name="classroom">Class room</string>
     <string name="line"> ~ </string>
