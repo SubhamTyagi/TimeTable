@@ -1,0 +1,10 @@
+TimeTable:Easy way to store your class scheduls and it is the perfect companion for school, college or university and daily life schedules. Keep track of classes and add events to your week's schedule with ease. Save your timetable and all tasks from homework to exams.
+**********************************************
+Sailent Features
+- Easy to use and intuitive interface
+- Simple and convenient schedules.
+- Easily save your lessons, tasks and holidays
+- Optional two, three or four week cycle
+- Screen Widget.
+- Share your schedule to others via QR code 
+**********************************************
